@@ -124,7 +124,7 @@ Clone this repo into your $GOPATH/src folder:
 
 `cd tritium_oss/trit`
 
-`go build -ldflags -extldflags=-L$MOOV_HOME/clibs/lib
+`go build -ldflags -extldflags=-L$MOOV_HOME/clibs/lib`
 
 
 ### Run Tritium
