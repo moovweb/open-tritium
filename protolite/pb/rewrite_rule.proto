@@ -1,0 +1,10 @@
+package proto;
+
+option optimize_for = SPEED;
+
+message RewriteRule {
+	optional string proxy = 1;
+	optional string upstream = 2;
+	optional int32 direction = 3  [default=0];
+	optional string cookie_domain = 4;
+}

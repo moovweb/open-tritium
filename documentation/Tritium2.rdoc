@@ -1,0 +1,20 @@
+Positionals are now gone. bottom() is gone
+
+insert() => inject()
+insert_tag() => insert()
+
+So, now its insert("tag") and inject("<tag />")
+
+No more bottom(), top(), above(), below() (or whatever they were)
+
+  move_to("here", "bottom") # Same as always
+  insert_bottom()
+  inject_bottom()
+
+html() becomes inner()
+
+doc('html') #=> html() { ... }
+doc('xml')  #=> xml()  { ... }
+
+$("./html()") no longer works at all
+

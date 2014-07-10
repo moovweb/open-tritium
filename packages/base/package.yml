@@ -1,0 +1,8 @@
+name: base
+# None, this is the base package, dork!
+packages: []
+types:
+  - Base
+  - Text
+  - Regexp
+  - Header
