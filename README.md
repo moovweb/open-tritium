@@ -115,7 +115,7 @@ Setup $DYLD_LIBRARY_PATH for linking to the clibs
 
 Clone this repo into your $GOPATH/src folder:
 
-`cd $GOPATH`
+`cd $GOPATH/src`
 
 `git clone git@github.com:moovweb/tritium_oss`
 
