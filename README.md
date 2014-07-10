@@ -54,25 +54,31 @@ You'd get back...
 * This assumes you have setup your $GOPATH
 ex. `export GOPATH=/Users/Yourname/dev`
 
-0. Setup MOOV_HOME
+### Setup MOOV_HOME
 
 Set $MOOV_HOME var to be your GOPATH:
 `export MOOV_HOME=$GOPATH`
 
-1. Fetch the dependencies
+### Fetch the dependencies
 
 Fetch the moovweb repositories for tritium dependencies.
 For current compatability, switch to the 'oss' branch of each.
 
 `cd $GOPATH`
+
 `go get github.com/moovweb/gokogiri`
+
 `cd github.com/moovweb/gokogiri ; git checkout oss`
 
+
 `cd $GOPATH`
+
 `go get github.com/moovweb/rubex`
+
 `cd github.com/moovweb/rubex ; git checkout oss`
 
-2. Build and install our required clibs.
+### Build and install our required clibs.
+
 Versions have been locked for our development processes. Clibs can be installed anywhere but the following steps assume they are placed inside a GOPATH/clibs/ folder. Source can be cloned into GOPATH/clibs/src and built. EX:
 
 `mkdir $GOPATH/clibs/src; cd $GOPATH/clibs/src`
@@ -80,36 +86,48 @@ Versions have been locked for our development processes. Clibs can be installed 
 Note: you may wish to create an environment variable to this clibs directory, $CLIBS_HOME
 
 `git clone git@github.com:moovweb/icu4c`
+
 `git clone git@github.com:moovweb/libiconv`
+
 `git clone git@github.com:moovweb/libxml2`
+
 `git clone git@github.com:moovweb/libsass`
+
 `git clone git@github.com:moovweb/libyaml`
+
 `git clone git@github.com:moovweb/oniguruma`
 
+
 For each of the 6 libraries, enter the folder and build them with
-`./build.sh'
+
+`./build.sh`
 
 $GOPATH/clibs/ should now contain the built /bin /includes and /lib folders for use within the Tritium application
 
-3. Link to the location of your built clibs
+### Link to the location of your built clibs
 
 Setup $DYLD_LIBRARY_PATH for linking to the clibs
+
 `export DYLD_LIBRARY_PATH=$GOPATH/clibs/lib`
 
 
-4. Clone this Repo
+### Clone this Repo
 
 Clone this repo into your $GOPATH/src folder:
 
 `cd $GOPATH`
+
 `git clone git@github.com:moovweb/tritium_oss`
 
-5. Building the Driver from src
+
+### Building the Driver from src
 
 `cd tritium_oss/trit`
+
 `go build -ldflags -extldflags=-L$MOOV_HOME/clibs/lib
 
-6. Run Tritium
+
+### Run Tritium
 
 You should now have a compiled trit file in your /tritium_oss/trit directory. Run by passing in the path to any tritium script and an html file to transform. Currently the driver emits the transformations to STDOUT, and can be piped into other functions.
 
