@@ -1,7 +1,7 @@
 package xpath
 
 import "testing"
-import "tritium/dependencies/gokogiri/help"
+import "tritium_oss/dependencies/gokogiri/help"
 
 func CheckXmlMemoryLeaks(t *testing.T) {
 	// LibxmlCleanUpParser() should only be called once during the lifetime of the

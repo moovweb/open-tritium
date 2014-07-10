@@ -5,8 +5,8 @@ import "C"
 import (
 	"bytes"
 	"errors"
-	. "tritium/dependencies/gokogiri/util"
-	"tritium/dependencies/gokogiri/xml"
+	. "tritium_oss/dependencies/gokogiri/util"
+	"tritium_oss/dependencies/gokogiri/xml"
 	"unsafe"
 )
 

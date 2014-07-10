@@ -1,7 +1,7 @@
 package whale
 
 import (
-	"tritium/protoface"
+	"tritium_oss/protoface"
 )
 
 type Position int

@@ -1,6 +1,6 @@
 package proto
 
-import "tritium/constants"
+import "tritium_oss/constants"
 
 func (obj *ScriptObject) Imports() []string {
 	list := make([]string, 0)

@@ -4,8 +4,8 @@ import (
 	"container/list"
 	"errors"
 
-	. "tritium/dependencies/go-cache"
-	"tritium/dependencies/go-cache/base"
+	. "tritium_oss/dependencies/go-cache"
+	"tritium_oss/dependencies/go-cache/base"
 )
 
 const (

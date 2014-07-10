@@ -9,9 +9,9 @@ import (
 )
 
 import (
-	"tritium/dependencies/butler/crypto"
-	"tritium/dependencies/butler/fileutil"
-	"tritium/dependencies/butler/null"
+	"tritium_oss/dependencies/butler/crypto"
+	"tritium_oss/dependencies/butler/fileutil"
+	"tritium_oss/dependencies/butler/null"
 	pb "code.google.com/p/goprotobuf/proto"
 )
 

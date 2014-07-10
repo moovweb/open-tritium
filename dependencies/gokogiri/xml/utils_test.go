@@ -3,8 +3,8 @@ package xml
 import (
 	"errors"
 	"fmt"
-	"tritium/dependencies/gokogiri/help"
-	"tritium/dependencies/gokogiri/xpath"
+	"tritium_oss/dependencies/gokogiri/help"
+	"tritium_oss/dependencies/gokogiri/xpath"
 	"io/ioutil"
 	"path/filepath"
 	"strings"

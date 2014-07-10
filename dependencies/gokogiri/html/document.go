@@ -11,9 +11,9 @@ import "C"
 
 import (
 	"errors"
-	"tritium/dependencies/gokogiri/help"
-	. "tritium/dependencies/gokogiri/util"
-	"tritium/dependencies/gokogiri/xml"
+	"tritium_oss/dependencies/gokogiri/help"
+	. "tritium_oss/dependencies/gokogiri/util"
+	"tritium_oss/dependencies/gokogiri/xml"
 	//"runtime"
 	"unsafe"
 )

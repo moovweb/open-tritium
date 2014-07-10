@@ -8,11 +8,11 @@ import (
 )
 
 import (
-	"tritium/dependencies/butler/null"
+	"tritium_oss/dependencies/butler/null"
 	proto "code.google.com/p/goprotobuf/proto"
-	tp "tritium/proto"
-	"tritium/constants"
-	. "tritium/util"
+	tp "tritium_oss/proto"
+	"tritium_oss/constants"
+	. "tritium_oss/util"
 )
 
 type FuncMap map[string]int

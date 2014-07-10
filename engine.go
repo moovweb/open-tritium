@@ -3,7 +3,7 @@ package tritium
 import (
 	"time"
 
-	"tritium/protoface"
+	"tritium_oss/protoface"
 )
 
 type Exhaust struct {

@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"time"
 
-	"tritium/dependencies/golog"
-	mhclient "tritium/dependencies/mirrorhttp/client"
-	tp "tritium/proto"
-	"tritium/protoface"
+	"tritium_oss/dependencies/golog"
+	mhclient "tritium_oss/dependencies/mirrorhttp/client"
+	tp "tritium_oss/proto"
+	"tritium_oss/protoface"
 )
 
 type TimeStats struct {

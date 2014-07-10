@@ -3,12 +3,12 @@ package legacy
 import (
 	proto "code.google.com/p/goprotobuf/proto"
 	// "fmt"
-	"tritium/dependencies/golog"
+	"tritium_oss/dependencies/golog"
 	"os"
 	"path/filepath"
 	"strings"
 	// "time"
-	tp "tritium/proto"
+	tp "tritium_oss/proto"
 )
 
 type Error struct {

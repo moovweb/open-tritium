@@ -1,6 +1,6 @@
 package base
 
-import . "tritium/dependencies/go-cache"
+import . "tritium_oss/dependencies/go-cache"
 
 type CacheDirectoryBlock interface {
 	GetKey() string

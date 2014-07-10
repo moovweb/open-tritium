@@ -32,7 +32,7 @@ char *check_xpath_syntax(const char *xpath) {
 */
 import "C"
 import "unsafe"
-import . "tritium/dependencies/gokogiri/util"
+import . "tritium_oss/dependencies/gokogiri/util"
 
 //import "runtime"
 import "errors"

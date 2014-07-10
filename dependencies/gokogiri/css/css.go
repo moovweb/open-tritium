@@ -4,7 +4,7 @@ package css
 
 import (
 	"fmt"
-	"tritium/dependencies/rubex"
+	"tritium_oss/dependencies/rubex"
 	"strings"
 )
 

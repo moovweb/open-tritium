@@ -6,7 +6,7 @@ import (
 )
 
 import (
-	"tritium/dependencies/gokogiri/xml"
+	"tritium_oss/dependencies/gokogiri/xml"
 )
 
 // Converting JSON to XML nodes

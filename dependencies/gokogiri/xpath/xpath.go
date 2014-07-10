@@ -41,7 +41,7 @@ int getXPathObjectType(xmlXPathObject* o) {
 import "C"
 
 import "unsafe"
-import . "tritium/dependencies/gokogiri/util"
+import . "tritium_oss/dependencies/gokogiri/util"
 import "runtime"
 import "errors"
 

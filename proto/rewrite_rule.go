@@ -1,7 +1,7 @@
 package proto
 
 import (
-	"tritium/constants"
+	"tritium_oss/constants"
 	pb "code.google.com/p/goprotobuf/proto"
 )
 

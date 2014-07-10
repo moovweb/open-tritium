@@ -8,8 +8,8 @@ and a simple DOM-like inteface allows for building up documents from scratch.
 package gokogiri
 
 import (
-	"tritium/dependencies/gokogiri/html"
-	"tritium/dependencies/gokogiri/xml"
+	"tritium_oss/dependencies/gokogiri/html"
+	"tritium_oss/dependencies/gokogiri/xml"
 )
 
 /*

@@ -6,8 +6,8 @@ import "C"
 
 import (
 	"errors"
-	. "tritium/dependencies/gokogiri/util"
-	"tritium/dependencies/gokogiri/xpath"
+	. "tritium_oss/dependencies/gokogiri/util"
+	"tritium_oss/dependencies/gokogiri/xpath"
 	"strconv"
 	"unsafe"
 )

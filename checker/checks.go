@@ -1,10 +1,10 @@
 package checker
 
 import (
-	"tritium/dependencies/butler/null"
+	"tritium_oss/dependencies/butler/null"
 	. "rubex"
-	tp "tritium/proto"
-	"tritium/constants"
+	tp "tritium_oss/proto"
+	"tritium_oss/constants"
 )
 
 func (result *CheckResult) CheckForSelectText(script *tp.ScriptObject) {

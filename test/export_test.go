@@ -9,12 +9,12 @@ import (
 	"time"
 
 	// TODO: remove this and replace with something else when whale no longer needs to use steno loggers
-	"tritium/dependencies/butler/mixer"
+	"tritium_oss/dependencies/butler/mixer"
 	"steno/dummy"
-	tf "tritium/transform"
-	tp "tritium/proto"
-	"tritium/packager"
-	"tritium/whale"
+	tf "tritium_oss/transform"
+	tp "tritium_oss/proto"
+	"tritium_oss/packager"
+	"tritium_oss/whale"
 )
 
 var baseDir string

@@ -11,16 +11,16 @@ import (
 )
 
 import (
-	fileutil "tritium/dependencies/butler/fileutil"
-	"tritium/dependencies/butler/mixer"
+	fileutil "tritium_oss/dependencies/butler/fileutil"
+	"tritium_oss/dependencies/butler/mixer"
 	proto "code.google.com/p/goprotobuf/proto"
-	"tritium/dependencies/golog"
-	yaml "tritium/dependencies/goyaml"
-	"tritium/packager/legacy"
-	"tritium/parser"
-	tp "tritium/proto"
-	. "tritium/util"
-	"tritium/whale"
+	"tritium_oss/dependencies/golog"
+	yaml "tritium_oss/dependencies/goyaml"
+	"tritium_oss/packager/legacy"
+	"tritium_oss/parser"
+	tp "tritium_oss/proto"
+	. "tritium_oss/util"
+	"tritium_oss/whale"
 )
 
 type downloader func(string, string) (*tp.Mixer, error)

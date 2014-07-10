@@ -3,9 +3,9 @@ package linker
 import (
 	"errors"
 
-	parser "tritium/parser"
-	tp "tritium/proto"
-	. "tritium/util"
+	parser "tritium_oss/parser"
+	tp "tritium_oss/proto"
+	. "tritium_oss/util"
 )
 
 func RunStringWithPackage(src, projectPath, scriptPath, fileName string, pkg *tp.Package, activeLayers []string, ranges ...Range) (*tp.Transform, error) {

@@ -8,14 +8,14 @@ import (
 )
 
 import (
-	"tritium/dependencies/go-cache"
-	"tritium/dependencies/go-cache/arc"
-	"tritium/dependencies/gokogiri/xpath"
-	"tritium/dependencies/rubex"
-	"tritium/dependencies/steno"
-	"tritium"
-	"tritium/constants"
-	"tritium/protoface"
+	"tritium_oss/dependencies/go-cache"
+	"tritium_oss/dependencies/go-cache/arc"
+	"tritium_oss/dependencies/gokogiri/xpath"
+	"tritium_oss/dependencies/rubex"
+	"tritium_oss/dependencies/steno"
+	"tritium_oss"
+	"tritium_oss/constants"
+	"tritium_oss/protoface"
 )
 
 type Whale struct {

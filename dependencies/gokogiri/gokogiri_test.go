@@ -1,7 +1,7 @@
 package gokogiri
 
 import (
-	"tritium/dependencies/gokogiri/help"
+	"tritium_oss/dependencies/gokogiri/help"
 	"testing"
 )
 

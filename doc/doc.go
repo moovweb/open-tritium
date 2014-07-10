@@ -10,11 +10,11 @@ import (
 )
 
 import (
-	"tritium/dependencies/butler/null"
+	"tritium_oss/dependencies/butler/null"
 	yaml "goyaml"
-	"tritium/packager"
-	tp "tritium/proto"
-	"tritium/constants"
+	"tritium_oss/packager"
+	tp "tritium_oss/proto"
+	"tritium_oss/constants"
 )
 
 func Process(pkg *tp.Package) string {

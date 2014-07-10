@@ -1,7 +1,7 @@
 package proto
 
 import (
-	"tritium/protoface"
+	"tritium_oss/protoface"
 )
 
 func (m *Transform) IGetNthObject(n int) protoface.ScriptObject {

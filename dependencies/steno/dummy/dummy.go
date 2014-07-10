@@ -1,11 +1,11 @@
 package dummy
 
-import "tritium/dependencies/steno"
+import "tritium_oss/dependencies/steno"
 import "net/http"
-import mhclient "tritium/dependencies/mirrorhttp/client"
-import "tritium/dependencies/golog"
-import tp "tritium/proto"
-import "tritium/protoface"
+import mhclient "tritium_oss/dependencies/mirrorhttp/client"
+import "tritium_oss/dependencies/golog"
+import tp "tritium_oss/proto"
+import "tritium_oss/protoface"
 
 type DummyDebugger struct {
 	isProd bool

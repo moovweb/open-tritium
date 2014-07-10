@@ -14,7 +14,7 @@ import "C"
 
 import "unsafe"
 import "reflect"
-import . "tritium/dependencies/gokogiri/util"
+import . "tritium_oss/dependencies/gokogiri/util"
 
 //export go_resolve_variables
 func go_resolve_variables(ctxt unsafe.Pointer, name, ns *C.char) (ret C.xmlXPathObjectPtr) {

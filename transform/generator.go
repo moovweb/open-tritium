@@ -12,10 +12,10 @@ import (
 )
 
 import (
-	"tritium/dependencies/butler/null"
+	"tritium_oss/dependencies/butler/null"
 	"manhattan/project"
 	"rubex"
-	tp "tritium/proto"
+	tp "tritium_oss/proto"
 )
 
 var WriteRewritersToProjectDir = false

@@ -2,7 +2,7 @@ package html
 
 import (
 	"fmt"
-	"tritium/dependencies/gokogiri/help"
+	"tritium_oss/dependencies/gokogiri/help"
 	"io/ioutil"
 	"path/filepath"
 	"strings"

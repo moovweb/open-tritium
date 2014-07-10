@@ -10,11 +10,11 @@ import (
 )
 
 import (
-	"tritium/dependencies/butler/mixer"
-	"tritium/dependencies/butler/null"
+	"tritium_oss/dependencies/butler/mixer"
+	"tritium_oss/dependencies/butler/null"
 	proto "code.google.com/p/goprotobuf/proto"
-	yaml "tritium/dependencies/goyaml"
-	tp "tritium/proto"
+	yaml "tritium_oss/dependencies/goyaml"
+	tp "tritium_oss/proto"
 )
 
 type Mixer struct {

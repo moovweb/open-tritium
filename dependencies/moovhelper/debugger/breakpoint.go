@@ -1,7 +1,7 @@
 package debugger
 
 import "sync"
-import tp "tritium/proto"
+import tp "tritium_oss/proto"
 
 type BreakpointManager interface {
 	SetBreakpoint(*Breakpoint) *Breakpoint

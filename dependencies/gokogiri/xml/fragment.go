@@ -4,7 +4,7 @@ package xml
 import "C"
 import (
 	"errors"
-	. "tritium/dependencies/gokogiri/util"
+	. "tritium_oss/dependencies/gokogiri/util"
 	"unsafe"
 )
 

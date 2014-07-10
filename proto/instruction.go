@@ -6,8 +6,8 @@ import (
 
 import (
 	pb "code.google.com/p/goprotobuf/proto"
-	"tritium/protoface"
-	"tritium/constants"
+	"tritium_oss/protoface"
+	"tritium_oss/constants"
 )
 
 func (ins *Instruction) Iterate(itFunc func(*Instruction)) {

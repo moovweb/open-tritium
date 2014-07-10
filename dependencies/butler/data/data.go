@@ -9,8 +9,8 @@ import (
   "path/filepath"
   "strconv"
 
-  "tritium/dependencies/butler/fileutil"
-  . "tritium/dependencies/butler/docstrings"
+  "tritium_oss/dependencies/butler/fileutil"
+  . "tritium_oss/dependencies/butler/docstrings"
 )
 
 var AUTO_CREATE_MODE bool = true
