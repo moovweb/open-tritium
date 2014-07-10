@@ -10,8 +10,8 @@ import (
 import (
 	"tritium_oss/dependencies/go-cache"
 	"tritium_oss/dependencies/go-cache/arc"
-	"tritium_oss/dependencies/gokogiri/xpath"
-	"tritium_oss/dependencies/rubex"
+	"github.com/moovweb/gokogiri/xpath"
+	"github.com/moovweb/rubex"
 	"tritium_oss/dependencies/steno"
 	"tritium_oss"
 	"tritium_oss/constants"

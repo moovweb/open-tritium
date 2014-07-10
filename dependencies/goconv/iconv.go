@@ -1,7 +1,7 @@
 package goconv
 
-// #cgo CFLAGS: -I../../clibs/include
-// #cgo LDFLAGS: -liconv -L../../clibs/lib
+// #cgo CFLAGS: -I../../../../clibs/include
+// #cgo LDFLAGS: -liconv -L../../../../clibs/lib
 // #include <iconv.h>
 // #include <errno.h>
 // #include <stdlib.h>

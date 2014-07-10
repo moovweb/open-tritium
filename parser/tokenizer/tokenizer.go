@@ -3,7 +3,7 @@ package tokenizer
 import (
 	"bytes"
 	"fmt"
-	"tritium_oss/dependencies/rubex"
+	"github.com/moovweb/rubex"
 	"strings"
 	"strconv"
 )

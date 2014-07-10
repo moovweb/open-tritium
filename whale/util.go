@@ -3,7 +3,7 @@ package whale
 import (
 	"strings"
 
-	"tritium_oss/dependencies/gokogiri/xml"
+	"github.com/moovweb/gokogiri/xml"
 )
 
 func MoveFunc(what, where xml.Node, position Position) {

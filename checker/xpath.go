@@ -2,7 +2,7 @@ package checker
 
 import (
 	"tritium_oss/dependencies/butler/null"
-	"tritium_oss/github.com/moovweb/gokogiri/xpath"
+	"github.com/moovweb/gokogiri/xpath"
 	tp "tritium_oss/proto"
 	"tritium_oss/constants"
 )

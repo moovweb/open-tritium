@@ -2,7 +2,7 @@ package checker
 
 import (
 	"tritium_oss/dependencies/butler/null"
-	. "rubex"
+	. "github.com/moovweb/rubex"
 	tp "tritium_oss/proto"
 	"tritium_oss/constants"
 )

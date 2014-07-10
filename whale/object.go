@@ -1,7 +1,7 @@
 package whale
 
-import "tritium_oss/dependencies/rubex"
-import "tritium_oss/dependencies/gokogiri/xpath"
+import "github.com/moovweb/rubex"
+import "github.com/moovweb/gokogiri/xpath"
 import "tritium_oss/dependencies/go-cache"
 
 type MemoryObject interface {
