@@ -58,11 +58,15 @@ ex. `export GOPATH=/Users/Yourname/dev`
 Setup $MOOV_HOME var to be your GOPATH:
 `export MOOV_HOME=$GOPATH`
 
-2. Fetch the dependencies
-
 Ensure the dependent clibs are inside a /clibs folder within GOPATH
 
-Fetching dependencies, for now check out the oss branch of each public repository:
+Setup $DYLD_LIBRARY_PATH for linking to those clibs
+`export DYLD_LIBRARY_PATH=$GOPATH/clibs/lib`
+
+2. Fetch the dependencies
+
+Fetch the moovweb repositories for tritium dependencies.
+For current compatability, switch to the 'oss' branch of each.
 
 `cd $GOPATH`
 `go get github.com/moovweb/gokogiri`
@@ -72,9 +76,9 @@ Fetching dependencies, for now check out the oss branch of each public repositor
 `go get github.com/moovweb/rubex`
 `cd github.com/moovweb/rubex ; git checkout oss`
 
-3. Installing Tritium
+3. Get this Repo
 
-Clone the tritium_oss repo into your GOPATH/src folder:
+Clone this repo into your GOPATH/src folder:
 
 `cd $GOPATH`
 `git clone git@github.com:moovweb/tritium_oss`
@@ -86,11 +90,13 @@ Clone the tritium_oss repo into your GOPATH/src folder:
 
 5. Run Tritium
 
-You should now have a trit file in your /tritium_oss/trit directory.
-
-Run by passing in the path to any tritium script and an html file to transform.
+You should now have a compiled trit file in your /tritium_oss/trit directory. Run by passing in the path to any tritium script and an html file to transform. Currently the driver emits the transformations to STDOUT, and can be piped into other functions.
 
 `./trit main.ts input.html`
+
+The compiled binary can be used to transform HTML with any functions found in /mixers/tritium/lib. We have provided the primary functions at the core of the language. Why not try writing your own?
+
+
 
 
 
