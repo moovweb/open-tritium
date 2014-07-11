@@ -13,6 +13,10 @@ func ParseFile(projectPath, scriptPath, fileName string, compilingMixer bool, ac
 	return ParseScript(src, projectPath, scriptPath, fileName, compilingMixer, activeLayers)
 }
 
+func ParseFile_OSS(src string, compilingMixer bool, activeLayers []string) *tp.ScriptObject {
+	return ParseScript(src, "", "", "", compilingMixer, activeLayers)
+}
+
 func ParseScript(src, projectPath, scriptPath, fileName string, compilingMixer bool, activeLayers []string) *tp.ScriptObject {
 	return MakeParser(src, projectPath, scriptPath, fileName, false, compilingMixer, activeLayers).Parse()
 }

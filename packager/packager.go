@@ -103,6 +103,45 @@ func New(relSrcDir, libDir string, mayBuildHttpTransformers bool, logger *golog.
 	return pkgr
 }
 
+func New_OSS(logger *golog.Logger, mixerDownloader downloader) *Packager {
+	pkgr := new(Packager)
+
+	wd, wdErr := os.Getwd()
+	if wdErr != nil {
+		panic("unable to determine current directory for mixer creation")
+	}
+
+	pkgr.MixerDir = ""
+	pkgr.LibDir = ""
+	pkgr.IncludePaths = make([]string, 2) // support more in the future as a command-line option
+	pkgr.IncludePaths[0] = wd
+
+	pkgr.Mixer = tp.NewMixer_OSS("")
+	// stopped here
+	pkgr.PackagerVersion = proto.Int32(PACKAGER_VERSION)
+	pkgr.readDependenciesFile()
+	pkgr.AlreadyLoaded = make(map[string]bool)
+	pkgr.Logger = logger
+	pkgr.downloader = mixerDownloader
+
+	pkgr.Mixer.Package = new(tp.Package)
+	pkgr.Mixer.Package.Functions = make([]*tp.Function, 0)
+
+	pkgr.MayBuildHttpTransformers = false
+	tSigThere, _ := fileutil.Exists(filepath.Join(pkgr.MixerDir, HTTP_TRANSFORMERS_SIGNATURE))
+	if tSigThere {
+		pkgr.IsHttpTransformer = true
+		if !pkgr.MayBuildHttpTransformers {
+			panic("you are not authorized to build HTTP transformer mixers")
+		}
+	}
+
+	pkgr.Ranges = make([]Range, 0)
+	pkgr.CachedDependencies = make(map[string]*Packager)
+
+	return pkgr
+}
+
 func NewFromCompiledMixer(mxr *tp.Mixer) *Packager {
 	pkgr := new(Packager)
 	pkgr.AlreadyLoaded = make(map[string]bool)
@@ -212,6 +251,32 @@ func (pkgr *Packager) Build() {
 	pkgr.resolveTypeDeclarations()
 	pkgr.populateTypeList()
 	pkgr.buildLib()
+
+	if pkgr.IsHttpTransformer {
+		pkgr.Mixer.IsHttpTransformer = proto.Bool(true)
+		pkgr.Mixer.Rewriters = tp.CollectFiles(filepath.Join(pkgr.MixerDir, SCRIPTS_DIR))
+		if pkgr.Mixer.Package.Dependencies == nil {
+			pkgr.Mixer.Package.Dependencies = make([]string, len(pkgr.Dependencies))
+		}
+		for i, nameAndVersion := range pkgr.Dependencies {
+			name, version := nameAndVersion.Name, nameAndVersion.Version
+			pkgr.Mixer.Package.Dependencies[i] = fmt.Sprintf("%s:%s", name, version)
+		}
+	}
+
+	// Let NumExports potentially be zero -- it's up to the user to check and set
+	// the export range to the whole package if it is actually zero.
+	pkgr.Package.NumExports = proto.Int32(int32(len(pkgr.Package.Functions) - lenDeps))
+}
+
+func (pkgr *Packager) Build_OSS(libstring string, typestring string) {
+	pkgr.resolveDependencies()
+
+	lenDeps := len(pkgr.Package.Functions)
+
+	pkgr.resolveTypeDeclarations_OSS(typestring)
+	pkgr.populateTypeList()
+	pkgr.buildLib_OSS(libstring)
 
 	if pkgr.IsHttpTransformer {
 		pkgr.Mixer.IsHttpTransformer = proto.Bool(true)
@@ -410,6 +475,69 @@ func (pkgr *Packager) resolveTypeDeclarations() {
 	}
 }
 
+func (pkgr *Packager) resolveTypeDeclarations_OSS(typestring string) {
+	// OSS version, takes in a string with types
+	data := []byte(typestring)
+	typeDecs := make([]string, 0)
+	yaml.Unmarshal(data, &typeDecs)
+	if pkgr.TypeMap == nil {
+		pkgr.TypeMap = make(map[string]int)
+	}
+	if pkgr.SuperclassOf == nil {
+		pkgr.SuperclassOf = make(map[string]string)
+	}
+
+	// now resolve the type declarations
+	for _, typeDec := range typeDecs {
+		// TODO: this logic is more complicated than it needs to be. Should really
+		// just disallow any duplicate declarations. Anyway....
+
+		// if the type doesn't extend anything ...
+		if !strings.Contains(typeDec, "<") {
+			_, isThere := pkgr.TypeMap[typeDec]
+			if !isThere {
+				pkgr.TypeMap[typeDec] = len(pkgr.TypeMap)
+				pkgr.SuperclassOf[typeDec] = ""
+				// if the type has already been declared, check for a semantic conflict
+			} else if extendee := pkgr.SuperclassOf[typeDec]; extendee != "" {
+				panic(fmt.Sprintf("type declaration `%s` conflicts with previous declaration `%s < %s`", typeDec, typeDec, extendee))
+			}
+			// if we get to this point, the declaration is a duplicate, so do nothing
+
+			// else it's an extension
+		} else {
+			// parse the subtype and supertype
+			splitted := strings.Split(typeDec, "<")
+			if len(splitted) != 2 {
+				panic(fmt.Sprintf("invalid syntax in type declaration `%s`; only one extension is permitted per declaration", typeDec))
+			}
+			sub, super := strings.TrimSpace(splitted[0]), strings.TrimSpace(splitted[1])
+			// make sure that the supertype in a declaration actually exists
+			_, there := pkgr.TypeMap[super]
+			if !there {
+				panic(fmt.Sprintf("cannot extend type `%s` before it has been declared", super))
+			}
+			// check for conflicts with previous declarations
+			// (and incidentally ensure that subtypes always have a higher id than their supertypes
+			extendee, subHasAlreadyExtended := pkgr.SuperclassOf[sub]
+			if subHasAlreadyExtended /* && extendee != super */ {
+				var previousDec string
+				if extendee == "" {
+					previousDec = fmt.Sprintf("`%s` (extends nothing)", sub)
+				} else if extendee == super {
+					previousDec = fmt.Sprintf("`%s < %s` (duplicates not allowed)", sub, extendee)
+				} else {
+					previousDec = fmt.Sprintf("`%s < %s`", sub, extendee)
+				}
+				panic(fmt.Sprintf("type declaration `%s` conflicts with previous declaration %s", typeDec, previousDec))
+			}
+			// if we get this far, we can proceed with the type extension
+			pkgr.TypeMap[sub] = len(pkgr.TypeMap)
+			pkgr.SuperclassOf[sub] = super
+		}
+	}
+}
+
 func (pkgr *Packager) populateTypeList() {
 	numTypes := len(pkgr.TypeMap)
 	pkgr.TypeList = make([]string, numTypes)
@@ -444,6 +572,20 @@ func (pkgr *Packager) buildLib() {
 	pkgr.resolveFunctions(pkgr.LibDir, ENTRY_FILE)
 }
 
+func (pkgr *Packager) buildLib_OSS(libstring string) {
+	// Push another export range onto the list of export ranges -- we need to do
+	// this to ensure that any given function can reference other functions that
+	// are defined before it in the current mixer. Also, this needs to be outside
+	// resolveFunctions because the latter is recursive, and we don't want to
+	// push more than one export range for the current mixer. Also also, we need
+	// to do this even if there are no implementation files -- that way we push
+	// an empty range that tells the downstream functions that this package
+	// should export everything.
+	pkgr.Ranges = append(pkgr.Ranges, Range{Start: len(pkgr.Package.Functions), End: len(pkgr.Package.Functions)})
+
+	pkgr.resolveFunctions_OSS(libstring)
+}
+
 func (pkgr *Packager) resolveFunctions(dirName, fileName string) {
 	// the existence of `fileName` should be verified by the caller
 	relPath := filepath.Join(dirName, fileName)
@@ -469,6 +611,27 @@ func (pkgr *Packager) resolveFunctions(dirName, fileName string) {
 			// otherwise it's a user-defined function
 		} else {
 			pkgr.resolveUserDefinition(f, relPath)
+		}
+
+		pkgr.Package.Functions = append(pkgr.Package.Functions, f)
+		// now extend the last export range so that it includes the newly-resolved function
+		lastRange := pkgr.Ranges[len(pkgr.Ranges)-1]
+		pkgr.Ranges[len(pkgr.Ranges)-1] = Range{Start: lastRange.Start, End: lastRange.End+1}
+	}
+}
+
+func (pkgr *Packager) resolveFunctions_OSS(libstring string) {
+	// the existence of `fileName` should be verified by the caller
+	defs := parser.ParseFile_OSS(libstring, true, make([]string, 0))
+
+	for _, f := range defs.Functions {
+		// if it's an import stub ...
+		if f.GetBuiltIn() {
+			pkgr.resolveNativeDeclaration(f, "")
+
+			// otherwise it's a user-defined function
+		} else {
+			pkgr.resolveUserDefinition(f, "")
 		}
 
 		pkgr.Package.Functions = append(pkgr.Package.Functions, f)

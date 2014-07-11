@@ -13,6 +13,8 @@ import "tritium_oss/linker"
 import "os"
 import "io/ioutil"
 
+var pkg *tp.Package
+
 func readFile(filename string) string {
   f, err := ioutil.ReadFile(filename)
   if err!= nil {
@@ -41,14 +43,12 @@ func relativeDirectory(directoryFromRoot string) (directory string, ok bool) {
   return
 }
 
-var pkg *tp.Package
-
 func transform(tscript string, inputfile string) {
   logger := golog.NewLogger("tritium")
   logger.AddProcessor("info", golog.NewConsoleProcessor(golog.LOG_INFO, true))
 
-  pkgr := packager.New("../mixers/tritium", "lib", false, logger, func(name, version string) (mxr *tp.Mixer, err error) {return nil, nil})
-  pkgr.Build()
+  pkgr := packager.New_OSS(logger, func(name, version string) (mxr *tp.Mixer, err error) {return nil, nil})
+  pkgr.Build_OSS(lib, types)
   pkg = pkgr.Mixer.Package
   script, _ := linker.RunWithPackage(".", ".", tscript, pkg, make([]string, 0))
 
