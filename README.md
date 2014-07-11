@@ -51,7 +51,7 @@ You'd get back...
 
 ## Building Tritium Locally
 
-* This assumes you have setup your $GOPATH
+* This assumes you have Go installed (64-bit) and have setup your $GOPATH
 ex. `export GOPATH=/Users/Yourname/dev`
 
 ### Setup MOOV_HOME
