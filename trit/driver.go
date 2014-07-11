@@ -5,7 +5,6 @@ import "tritium_oss/whale"
 import "runtime"
 import "fmt"
 import tp "tritium_oss/proto"
-import "tritium_oss/packager/legacy"
 import "tritium_oss/packager"
 import "tritium_oss/dependencies/golog"
 import "time"
@@ -13,7 +12,6 @@ import "tritium_oss/dependencies/steno/dummy"
 import "tritium_oss/linker"
 import "os"
 import "io/ioutil"
-// import "bufio"
 
 func readFile(filename string) string {
   f, err := ioutil.ReadFile(filename)
@@ -45,30 +43,16 @@ func relativeDirectory(directoryFromRoot string) (directory string, ok bool) {
 
 var pkg *tp.Package
 
-func initializePackage() {
-  packagesPath, ok := relativeDirectory("packages")
-
-  if !ok {
-    panic("Can't find root tritium directory to build default package")
-  }
-
-  tpkg := legacy.LoadDefaultPackage(&packagesPath)
-  pkg = tpkg.Package
-}
-
-func main() {
-  // initializePackage()
+func transform(tscript string, inputfile string) {
   logger := golog.NewLogger("tritium")
   logger.AddProcessor("info", golog.NewConsoleProcessor(golog.LOG_INFO, true))
 
   pkgr := packager.New("../mixers/tritium", "lib", false, logger, func(name, version string) (mxr *tp.Mixer, err error) {return nil, nil})
   pkgr.Build()
   pkg = pkgr.Mixer.Package
-  // copied from spec.go
-  script, _ := linker.RunWithPackage(".", ".", os.Args[1], pkg, make([]string, 0))
+  script, _ := linker.RunWithPackage(".", ".", tscript, pkg, make([]string, 0))
 
-
-  input := readFile(os.Args[2])
+  input := readFile(inputfile)
 
   debugger := &dummy.DummyDebugger{}
   eng := whale.NewEngine(debugger)
@@ -76,4 +60,10 @@ func main() {
   exh := eng.Run(script, nil, input, make(map[string]string, 0), time.Now().Add(d), "test", "test", "test", make([]string, 0), false)
   os.Stderr = os.Stdout
   fmt.Fprintf(os.Stderr, "%s", exh.Output)
+}
+
+func main() {
+
+  transform(os.Args[1], os.Args[2])
+
 }
