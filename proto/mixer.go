@@ -34,6 +34,20 @@ func NewMixer(path string) *Mixer {
 	}
 }
 
+func NewMixer_OSS(path string) *Mixer {
+
+	versionStr := ""
+
+	_, name := filepath.Split(path)
+
+	return &Mixer{
+		Name:      pb.String(name),
+		Version:   pb.String(versionStr),
+		Rewriters: make([]*File, 0),
+		Package:   nil,
+	}
+}
+
 func (m *Mixer) Write(path string) (outputPath string, err error) {
 
 	name := null.GetString(m.Name)
