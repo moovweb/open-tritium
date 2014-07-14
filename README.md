@@ -61,6 +61,8 @@ Set $MOOV_HOME var to be your GOPATH:
 
 ### Fetch the dependencies
 
+`go get code.google.com/p/goprotobuf/proto`
+
 Fetch the moovweb repositories for tritium dependencies.
 For current compatability, switch to the 'oss' branch of each.
 
@@ -68,20 +70,19 @@ For current compatability, switch to the 'oss' branch of each.
 
 `go get github.com/moovweb/gokogiri`
 
-`cd github.com/moovweb/gokogiri ; git checkout oss`
-
+`cd src/github.com/moovweb/gokogiri ; git checkout oss`
 
 `cd $GOPATH`
 
 `go get github.com/moovweb/rubex`
 
-`cd github.com/moovweb/rubex ; git checkout oss`
+`cd src/github.com/moovweb/rubex ; git checkout oss`
 
 ### Build and install our required clibs.
 
 Versions have been locked for our development processes. Clibs can be installed anywhere but the following steps assume they are placed inside a GOPATH/clibs/ folder. Source can be cloned into GOPATH/clibs/src and built. EX:
 
-`mkdir $GOPATH/clibs/src; cd $GOPATH/clibs/src`
+`mkdir $GOPATH/clibs; mkdir $GOPATH/clibs/src; cd $GOPATH/clibs/src`
 
 Note: you may wish to create an environment variable to this clibs directory, $CLIBS_HOME
 
