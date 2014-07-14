@@ -74,9 +74,11 @@ For current compatability, switch to the 'oss' branch of each.
 
 `cd $GOPATH`
 
-`go get github.com/moovweb/rubex`
+`go get -d github.com/moovweb/rubex`
 
 `cd src/github.com/moovweb/rubex ; git checkout oss`
+
+`go install`
 
 ### Build and install our required clibs.
 
