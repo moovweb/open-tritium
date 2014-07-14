@@ -43,7 +43,7 @@ func relativeDirectory(directoryFromRoot string) (directory string, ok bool) {
   return
 }
 
-func transform(tscript string, inputfile string) {
+func transform(tscript string, inputfile string) string {
   logger := golog.NewLogger("tritium")
   logger.AddProcessor("info", golog.NewConsoleProcessor(golog.LOG_INFO, true))
 
@@ -58,12 +58,14 @@ func transform(tscript string, inputfile string) {
   eng := whale.NewEngine(debugger)
   d, _ := time.ParseDuration("10m")
   exh := eng.Run(script, nil, input, make(map[string]string, 0), time.Now().Add(d), "test", "test", "test", make([]string, 0), false)
-  os.Stderr = os.Stdout
-  fmt.Fprintf(os.Stderr, "%s", exh.Output)
+  // os.Stderr = os.Stdout
+  // fmt.Fprintf(os.Stderr, "%s", exh.Output)
+  return exh.Output
 }
 
 func main() {
 
-  transform(os.Args[1], os.Args[2])
+  output := transform(os.Args[1], os.Args[2])
+  fmt.Println(output)
 
 }
