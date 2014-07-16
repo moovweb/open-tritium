@@ -63,6 +63,8 @@ Set $MOOV_HOME var to be your GOPATH:
 
 `go get code.google.com/p/goprotobuf/proto`
 
+Note: goprotobuf requires [Mercurial](http://mercurial.selenic.com/) which is required to fetch the latest version.
+
 Fetch the moovweb repositories for tritium dependencies.
 For current compatability, switch to the 'oss' branch of each.
 
