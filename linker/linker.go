@@ -18,6 +18,11 @@ func RunWithPackage(projectPath, scriptPath, fileName string, pkg *tp.Package, a
 	return runWithObjs(objs, pkg, projectPath, scriptPath)
 }
 
+func RunWithPackage_OSS(src string, pkg *tp.Package, activeLayers []string) (*tp.Transform, error) {
+	objs := parser.Parse(src, "", "", "", false, activeLayers)
+	return runWithObjs(objs, pkg, "", "")
+}
+
 func runWithObjs(objs []*tp.ScriptObject, pkg *tp.Package, projectPath, scriptPath string, ranges ...Range) (*tp.Transform, error) {
 	ctx := NewObjectLinkingContext(pkg, objs, projectPath, scriptPath, ranges...)
 	ctx.Link()
