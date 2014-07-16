@@ -120,6 +120,9 @@ func main() {
   // fmt.Println(tscript)
   // fmt.Println(input)
   output := Transform(tscript, input)
-  println(output)
+
+  // os.Stderr = os.Stdout
+  fmt.Fprintf(os.Stdout, "%s", output)
+  // println(output)
 
 }
