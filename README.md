@@ -85,26 +85,28 @@ Versions have been locked for our development processes. Clibs can be installed 
 You will need to have autoconf, automake, and libtool installed. If you dont:
 
 `brew install autoconf`
+
 `brew install automake`
+
 `brew install libtool`
 
 Note: you may wish to create an environment variable to this clibs directory, $CLIBS_HOME
 
-`git clone git@github.com:moovweb/icu4c`
+For each of the 5 libraries, enter the folder under clibs/src in this repo and build each of them with
 
-`git clone git@github.com:moovweb/libiconv`
+`cd clibs/src/icu4c`
+`./build.sh`
 
-`git clone git@github.com:moovweb/libxml2`
+`cd clibs/src/libiconv`
+`./build.sh`
 
-`git clone git@github.com:moovweb/libsass`
+`cd clibs/src/libxml2`
+`./build.sh`
 
-`git clone git@github.com:moovweb/libyaml`
+`cd clibs/src/libyaml`
+`./build.sh`
 
-`git clone git@github.com:moovweb/oniguruma`
-
-
-For each of the 6 libraries, enter the folder and build them with
-
+`cd clibs/src/oniguruma`
 `./build.sh`
 
 $GOPATH/clibs/ should now contain the built /bin /includes and /lib folders for use within the Tritium application
