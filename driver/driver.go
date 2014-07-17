@@ -75,14 +75,14 @@ func Transform(tscript string, input string) string {
 }
 
 func show_usage() {
-  fmt.Println("General purpose Tritium command line interface. Flags are -e, -f, -i.")
-  fmt.Println("\tFlags:")
-  fmt.Println("\t\t -e=\"\": a one-line tritium program passed as a string")
-  fmt.Println("\t\t -f=\"\": a filepath to tritium script")
-  fmt.Println("\t\t -i=\"\": a filepath to input html")
+  fmt.Println("General purpose Tritium command line interface. Language for html transformation.")
   fmt.Println("\tUsage: \n\t\t 1) tritium [-e|-f]=tritium_script \n\t\t\t Input assumed to be provided as Stdin")
   fmt.Println("\t\t 2) tritium [-e|-f]=\"tritium_script -i=\"input_file\" \n\t\t\t Input provided as a filepath")
   fmt.Println("\tOutput is streamed to Stdout")
+  fmt.Println("\tFlags:")
+  fmt.Println("\t\t -e=\"\": a one-line tritium program passed as a string")
+  fmt.Println("\t\t -f=\"\": a filepath to tritium script")
+  fmt.Println("\t\t -i=\"\" (optional): a filepath to input html")
 }
 
 func main() {
