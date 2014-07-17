@@ -136,6 +136,7 @@ Clone this repo into your $GOPATH/src folder:
 
 `go build -ldflags -extldflags=-L$MOOV_HOME/clibs/lib`
 
+Alternatively, inside /driver, you can also call ./build.sh which will build the driver package automatically.
 
 ### Run Tritium
 
