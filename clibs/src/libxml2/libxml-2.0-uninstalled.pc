@@ -1,0 +1,12 @@
+prefix=
+exec_prefix=
+libdir=${pcfiledir}
+includedir=${pcfiledir}/include
+
+
+Name: libXML
+Version: 2.7.8
+Description: libXML library version2.
+Requires:
+Libs: -L${libdir} -lxml2 -lpthread -lz -L/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/lib -liconv -lm 
+Cflags: -I${includedir} -I${includedir}/libxml2 -I/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include 
