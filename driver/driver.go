@@ -1,22 +1,18 @@
 package main
 
-import "path/filepath"
-import "tritium_oss/whale"
-import "runtime"
-import "fmt"
-import tp "tritium_oss/proto"
-import "tritium_oss/packager"
-import "tritium_oss/dependencies/golog"
-import "time"
-import "tritium_oss/dependencies/steno/dummy"
-import "tritium_oss/linker"
-import "os"
-import "io"
-import "io/ioutil"
-import "flag"
-import "log"
+import (
+  "fmt"
+  "os"
+  "io"
+  "io/ioutil"
+  "flag"
+  "log"
+)
 
-var pkg *tp.Package
+import (
+  "tritium_oss/tr"
+)
+
 
 func readFile(filename string) string {
   f, err := ioutil.ReadFile(filename)
@@ -42,37 +38,6 @@ func writeFile(input string) {
   }
 }
 
-func relativeDirectory(directoryFromRoot string) (directory string, ok bool) {
-  _, file, _, ok := runtime.Caller(0)
-
-  if !ok {
-    return
-  }
-
-  directory = filepath.Join(file, "../../", directoryFromRoot)
-
-  return
-}
-
-func Transform(tscript string, input string) string {
-  logger := golog.NewLogger("tritium")
-  logger.AddProcessor("info", golog.NewConsoleProcessor(golog.LOG_INFO, true))
-
-  pkgr := packager.New_OSS(logger, func(name, version string) (mxr *tp.Mixer, err error) {return nil, nil})
-  pkgr.Build_OSS(lib, types)
-  pkg = pkgr.Mixer.Package
-  script, _ := linker.RunWithPackage_OSS(tscript, pkg, make([]string, 0))
-
-  // input := readFile(inputfile)
-
-  debugger := &dummy.DummyDebugger{}
-  eng := whale.NewEngine(debugger)
-  d, _ := time.ParseDuration("10m")
-  exh := eng.Run(script, nil, input, make(map[string]string, 0), time.Now().Add(d), "test", "test", "test", make([]string, 0), false)
-  // os.Stderr = os.Stdout
-  // fmt.Fprintf(os.Stderr, "%s", exh.Output)
-  return exh.Output
-}
 
 func show_usage() {
   fmt.Println("General purpose Tritium command line interface. Language for html transformation.")
@@ -119,7 +84,7 @@ func main() {
   }
   // fmt.Println(tscript)
   // fmt.Println(input)
-  output := Transform(tscript, input)
+  output := tritium.Transform(tscript, input)
 
   // os.Stderr = os.Stdout
   fmt.Fprintf(os.Stdout, "%s", output)
