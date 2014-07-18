@@ -149,6 +149,19 @@ You should now have a compiled tritium file in your /tritium_oss/driver director
 The compiled binary can be used to transform HTML with any functions found in /mixers/tritium/lib. We have provided the primary functions at the core of the language. Why not try writing your own?
 
 
+### Using Tritium in Your Code
+
+You can also use tritium in your own go program to transform html or xml. Import "tritium_oss/tr" in your program and call tritium.Transform(script, input). The Transform function takes a string of tritium code and a string of input HTML and returns a string of transformed HTML.
+
+Before using this function, you will need to set the DYLD_LIBRARY_PATH to the clib library directory, usually $CLIBS_HOME/lib:
+
+`export DYLD_LIBRARY_PATH=$CLIBS_HOME/lib`
+
+Unfortunately, this environment variable may interfere with other command line interfaces such as git, so this may need to be unset after running your program with tritium:
+
+`unset DYLD_LIBRARY_PATH`
+
+or, set it to whatever it was before.
 
 
 
