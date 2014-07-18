@@ -9,7 +9,7 @@ import (
 )
 
 import (
-	"tritium_oss/dependencies/butler/null"
+	"open-tritium/dependencies/butler/null"
 	pb "code.google.com/p/goprotobuf/proto"
 )
 

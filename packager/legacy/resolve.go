@@ -10,15 +10,15 @@ import (
 )
 
 import (
-	"tritium_oss/dependencies/butler/null"
+	"open-tritium/dependencies/butler/null"
 	proto "code.google.com/p/goprotobuf/proto"
-	yaml "tritium_oss/dependencies/goyaml"
-	linker "tritium_oss/linker"
-	parser "tritium_oss/parser"
-	tp "tritium_oss/proto"
-	. "tritium_oss/util"
-	whale "tritium_oss/whale"
-	"tritium_oss/constants"
+	yaml "open-tritium/dependencies/goyaml"
+	linker "open-tritium/linker"
+	parser "open-tritium/parser"
+	tp "open-tritium/proto"
+	. "open-tritium/util"
+	whale "open-tritium/whale"
+	"open-tritium/constants"
 )
 
 func resolveDefinition(pkg *tp.Package, fun *tp.Function, path string, ranges ...Range) {

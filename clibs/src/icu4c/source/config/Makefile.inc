@@ -25,7 +25,7 @@
 # etc.  If ICU is not installed in this directory, you must change the
 # following line.  There should exist $(prefix)/include/unicode/utypes.h
 # for example.
-prefix = /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/icu4c
+prefix = /Users/wonjafairbrother1/dev/clibs/output/icu4c
 exec_prefix = ${prefix}
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec

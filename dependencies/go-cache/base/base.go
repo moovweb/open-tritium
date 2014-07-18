@@ -1,6 +1,6 @@
 package base
 
-import . "tritium_oss/dependencies/go-cache"
+import . "open-tritium/dependencies/go-cache"
 import "sync"
 
 type BaseCache struct {

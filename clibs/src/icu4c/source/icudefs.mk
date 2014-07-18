@@ -17,7 +17,7 @@ SHELL = /bin/sh
 
 # Standard directories
 
-prefix = /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/icu4c
+prefix = /Users/wonjafairbrother1/dev/clibs/output/icu4c
 exec_prefix = ${prefix}
 
 bindir = ${exec_prefix}/bin

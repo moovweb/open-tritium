@@ -1,0 +1,45 @@
+# Setup MOOV_HOME
+
+export MOOV_HOME=$GOPATH
+
+# Fetch gokogiri
+
+cd $MOOV_HOME
+go get code.google.com/p/goprotobuf/proto
+cd $GOPATH
+go get github.com/moovweb/gokogiri
+cd src/github.com/moovweb/gokogiri
+git checkout oss
+go install
+
+# Build and install our required clibs.
+
+export CLIBS_HOME=$GOPATH/clibs
+mkdir $CLIBS_HOME
+mkdir $CLIBS_HOME/src
+cd $MOOV_HOME/src
+
+cd open-tritium/clibs/src/icu4c
+./build.sh
+cd ../libiconv
+./build.sh
+cd ../libxml2
+./build.sh
+cd ../libyaml
+./build.sh
+cd ../oniguruma
+./build.sh
+
+# Fetch rubex
+cd $GOPATH
+go get -d github.com/moovweb/rubex
+cd src/github.com/moovweb/rubex
+git checkout oss
+go install
+
+# build the driver!
+cd $GOPATH/src/open-tritium/driver
+./build.sh
+
+cd ..
+

@@ -1,4 +1,4 @@
-tritium_oss
+open-tritium
 ===========
 
 Open source implementation of the Tritium language.
@@ -129,12 +129,12 @@ Clone this repo into your $GOPATH/src folder:
 
 `cd $GOPATH/src`
 
-`git clone git@github.com:moovweb/tritium_oss`
+`git clone git@github.com:moovweb/open-tritium`
 
 
 ### Building the Driver from src (optional)
 
-`cd tritium_oss/driver`
+`cd open-tritium/driver`
 
 `go build -ldflags -extldflags=-L$MOOV_HOME/clibs/lib`
 
@@ -142,7 +142,7 @@ Alternatively, inside /driver, you can also call ./build.sh which will build the
 
 ### Run Tritium
 
-You should now have a compiled tritium file in your /tritium_oss/driver directory. Run by passing in the path to any tritium script and an html file to transform. Currently the driver emits the transformations to STDOUT, and can be piped into other functions.
+You should now have a compiled tritium file in your /open-tritium/driver directory. Run by passing in the path to any tritium script and an html file to transform. Currently the driver emits the transformations to STDOUT, and can be piped into other functions.
 
 `./tritium -f="driver/main.ts" -i="driver/input.html"`
 
@@ -151,7 +151,7 @@ The compiled binary can be used to transform HTML with any functions found in /m
 
 ### Using Tritium in Your Code
 
-You can also use tritium in your own go program to transform html or xml. Import "tritium_oss/tr" in your program and call tritium.Transform(script, input). The Transform function takes a string of tritium code and a string of input HTML and returns a string of transformed HTML.
+You can also use tritium in your own go program to transform html or xml. Import "open-tritium/tr" in your program and call tritium.Transform(script, input). The Transform function takes a string of tritium code and a string of input HTML and returns a string of transformed HTML.
 
 Before using this function, you will need to set the DYLD_LIBRARY_PATH to the clib library directory, usually $CLIBS_HOME/lib:
 

@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"strings"
 	"time"
-	"tritium_oss/protoface"
+	"open-tritium/protoface"
 )
 
 func NewSlug(name string, version string, stages int) (slug *Slug, err error) {

@@ -1,8 +1,8 @@
 package checker
 
 import (
-	"tritium_oss/dependencies/butler/null"
-	tp "tritium_oss/proto"
+	"open-tritium/dependencies/butler/null"
+	tp "open-tritium/proto"
 )
 
 type CheckResult struct {

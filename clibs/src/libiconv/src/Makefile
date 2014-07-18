@@ -7,7 +7,7 @@ srcdir = .
 top_srcdir = ..
 
 # Directories used by "make install":
-prefix = /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/libiconv
+prefix = /Users/wonjafairbrother1/dev/clibs/output/libiconv
 local_prefix = /usr/local
 exec_prefix = ${prefix}
 bindir = ${exec_prefix}/bin
@@ -40,7 +40,7 @@ mkinstalldirs = $(SHELL) ../build-aux/mkinstalldirs
 # Programs used by "make install-strip":
 STRIP = /usr/bin/strip
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-install_sh = ${SHELL} /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/src/libiconv/build-aux/install-sh
+install_sh = ${SHELL} /Users/wonjafairbrother1/dev/src/open-tritium/clibs/src/libiconv/build-aux/install-sh
 
 #### End of system configuration section. ####
 

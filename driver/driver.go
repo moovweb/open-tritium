@@ -10,7 +10,7 @@ import (
 )
 
 import (
-  "tritium_oss/tr"
+  "open-tritium/tr"
 )
 
 

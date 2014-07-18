@@ -1,7 +1,7 @@
 package proto
 
 import(
-	"tritium_oss/protoface"
+	"open-tritium/protoface"
 )
 
 func (m *Type) IGetName() string {

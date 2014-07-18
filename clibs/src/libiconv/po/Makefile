@@ -22,7 +22,7 @@ srcdir = .
 top_srcdir = ..
 
 
-prefix = /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/libiconv
+prefix = /Users/wonjafairbrother1/dev/clibs/output/libiconv
 exec_prefix = ${prefix}
 datarootdir = ${prefix}/share
 datadir = ${datarootdir}
@@ -35,12 +35,12 @@ INSTALL_DATA = ${INSTALL} -m 644
 # We use $(mkdir_p).
 # In automake <= 1.9.x, $(mkdir_p) is defined either as "mkdir -p --" or as
 # "$(mkinstalldirs)" or as "$(install_sh) -d". For these automake versions,
-# ${SHELL} /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/src/libiconv/build-aux/install-sh does not start with $(SHELL), so we add it.
+# ${SHELL} /Users/wonjafairbrother1/dev/src/open-tritium/clibs/src/libiconv/build-aux/install-sh does not start with $(SHELL), so we add it.
 # In automake >= 1.10, $(top_builddir)/build-aux/install-sh -c -d is derived from ${MKDIR_P}, which is defined
 # either as "/path/to/mkdir -p" or ".../install-sh -c -d". For these automake
 # versions, $(mkinstalldirs) and $(install_sh) are unused.
-mkinstalldirs = $(SHELL) ${SHELL} /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/src/libiconv/build-aux/install-sh -d
-install_sh = $(SHELL) ${SHELL} /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/src/libiconv/build-aux/install-sh
+mkinstalldirs = $(SHELL) ${SHELL} /Users/wonjafairbrother1/dev/src/open-tritium/clibs/src/libiconv/build-aux/install-sh -d
+install_sh = $(SHELL) ${SHELL} /Users/wonjafairbrother1/dev/src/open-tritium/clibs/src/libiconv/build-aux/install-sh
 MKDIR_P = ../build-aux/install-sh -c -d
 mkdir_p = $(top_builddir)/build-aux/install-sh -c -d
 

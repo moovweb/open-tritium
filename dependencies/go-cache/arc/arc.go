@@ -1,6 +1,6 @@
 package arc
 
-import "tritium_oss/dependencies/go-cache/base"
+import "open-tritium/dependencies/go-cache/base"
 
 func NewARCache(size int) *base.BaseCache {
   arc := newCdbm()

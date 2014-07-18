@@ -14,20 +14,15 @@ testURI.o: testURI.c libxml.h config.h include/libxml/xmlversion.h \
   include/libxml/dict.h include/libxml/hash.h include/libxml/valid.h \
   include/libxml/xmlerror.h include/libxml/list.h \
   include/libxml/xmlautomata.h include/libxml/entities.h \
-  include/libxml/encoding.h \
-  /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include/iconv.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h \
-  /usr/include/errno.h /usr/include/sys/errno.h /usr/include/wchar.h \
-  /usr/include/time.h /usr/include/_structs.h \
-  /usr/include/sys/_structs.h /usr/include/_wctype.h \
-  /usr/include/ctype.h /usr/include/runetype.h include/libxml/xmlIO.h \
+  include/libxml/encoding.h /usr/include/iconv.h include/libxml/xmlIO.h \
   include/libxml/SAX.h /usr/include/stdlib.h /usr/include/sys/wait.h \
   /usr/include/sys/signal.h /usr/include/sys/appleapiopts.h \
   /usr/include/machine/signal.h /usr/include/i386/signal.h \
-  /usr/include/i386/_structs.h /usr/include/machine/_structs.h \
-  /usr/include/mach/i386/_structs.h /usr/include/sys/resource.h \
-  /usr/include/machine/endian.h /usr/include/i386/endian.h \
-  /usr/include/sys/_endian.h /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/i386/_structs.h /usr/include/sys/_structs.h \
+  /usr/include/machine/_structs.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/resource.h /usr/include/machine/endian.h \
+  /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+  /usr/include/libkern/_OSByteOrder.h \
   /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
   /usr/include/machine/types.h /usr/include/i386/types.h \
   include/libxml/xlink.h include/libxml/SAX2.h include/libxml/uri.h
@@ -102,27 +97,7 @@ include/libxml/entities.h:
 
 include/libxml/encoding.h:
 
-/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include/iconv.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h:
-
-/usr/include/errno.h:
-
-/usr/include/sys/errno.h:
-
-/usr/include/wchar.h:
-
-/usr/include/time.h:
-
-/usr/include/_structs.h:
-
-/usr/include/sys/_structs.h:
-
-/usr/include/_wctype.h:
-
-/usr/include/ctype.h:
-
-/usr/include/runetype.h:
+/usr/include/iconv.h:
 
 include/libxml/xmlIO.h:
 
@@ -141,6 +116,8 @@ include/libxml/SAX.h:
 /usr/include/i386/signal.h:
 
 /usr/include/i386/_structs.h:
+
+/usr/include/sys/_structs.h:
 
 /usr/include/machine/_structs.h:
 

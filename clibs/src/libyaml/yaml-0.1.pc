@@ -1,4 +1,4 @@
-prefix=/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/libyaml
+prefix=/Users/wonjafairbrother1/dev/clibs/output/libyaml
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${exec_prefix}/lib

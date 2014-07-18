@@ -18,7 +18,7 @@ import (
 	"strings"
 	"time"
 
-	"tritium_oss/dependencies/mirrorhttp"
+	"open-tritium/dependencies/mirrorhttp"
 )
 
 //TODO(NOJ): Deprecate this flag once we support http_proxy by default.

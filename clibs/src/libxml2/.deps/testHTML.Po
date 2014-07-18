@@ -27,16 +27,11 @@ testHTML.o: testHTML.c libxml.h config.h include/libxml/xmlversion.h \
   include/libxml/dict.h include/libxml/hash.h include/libxml/valid.h \
   include/libxml/xmlerror.h include/libxml/list.h \
   include/libxml/xmlautomata.h include/libxml/entities.h \
-  include/libxml/encoding.h \
-  /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include/iconv.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h \
-  /usr/include/errno.h /usr/include/sys/errno.h /usr/include/wchar.h \
-  /usr/include/time.h /usr/include/_structs.h /usr/include/_wctype.h \
-  /usr/include/ctype.h /usr/include/runetype.h include/libxml/xmlIO.h \
+  include/libxml/encoding.h /usr/include/iconv.h include/libxml/xmlIO.h \
   include/libxml/SAX.h include/libxml/xlink.h include/libxml/SAX2.h \
   include/libxml/HTMLparser.h include/libxml/HTMLtree.h \
   include/libxml/debugXML.h include/libxml/xpath.h \
-  /usr/include/sys/time.h
+  /usr/include/sys/time.h /usr/include/time.h /usr/include/_structs.h
 
 libxml.h:
 
@@ -162,25 +157,7 @@ include/libxml/entities.h:
 
 include/libxml/encoding.h:
 
-/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include/iconv.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h:
-
-/usr/include/errno.h:
-
-/usr/include/sys/errno.h:
-
-/usr/include/wchar.h:
-
-/usr/include/time.h:
-
-/usr/include/_structs.h:
-
-/usr/include/_wctype.h:
-
-/usr/include/ctype.h:
-
-/usr/include/runetype.h:
+/usr/include/iconv.h:
 
 include/libxml/xmlIO.h:
 
@@ -199,3 +176,7 @@ include/libxml/debugXML.h:
 include/libxml/xpath.h:
 
 /usr/include/sys/time.h:
+
+/usr/include/time.h:
+
+/usr/include/_structs.h:

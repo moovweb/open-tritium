@@ -7,10 +7,10 @@ import (
 )
 
 import (
-	"tritium_oss/dependencies/butler/crypto"
-	"tritium_oss/dependencies/butler/null"
+	"open-tritium/dependencies/butler/crypto"
+	"open-tritium/dependencies/butler/null"
 	proto "code.google.com/p/goprotobuf/proto"
-	tp "tritium_oss/proto"
+	tp "open-tritium/proto"
 )
 
 func (pkg *Package) write() {

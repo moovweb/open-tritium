@@ -8,11 +8,11 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
-	tp "tritium_oss/proto"
-	. "tritium_oss/parser/tokenizer"
-	"tritium_oss/constants"
-	. "tritium_oss/tritstrings"
-	"tritium_oss/dependencies/butler/fileutil"
+	tp "open-tritium/proto"
+	. "open-tritium/parser/tokenizer"
+	"open-tritium/constants"
+	. "open-tritium/tritstrings"
+	"open-tritium/dependencies/butler/fileutil"
 )
 
 type Parser struct {

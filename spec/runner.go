@@ -7,16 +7,16 @@ import (
 )
 
 import (
-	mixers "tritium_oss/dependencies/butler/mixer"
+	mixers "open-tritium/dependencies/butler/mixer"
 	xmlhelp "github.com/moovweb/gokogiri/help"
 	"golog"
 	"runtime/debug"
 	"steno/dummy"
 	"time"
-	"tritium_oss"
-	"tritium_oss/packager/legacy"
-	tp "tritium_oss/proto"
-	"tritium_oss/whale"
+	"open-tritium"
+	"open-tritium/packager/legacy"
+	tp "open-tritium/proto"
+	"open-tritium/whale"
 )
 
 func All(command string, directory string, options ...string) {

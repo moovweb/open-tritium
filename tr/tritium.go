@@ -5,12 +5,12 @@ import (
 )
 
 import(
-  "tritium_oss/whale"
-  tp "tritium_oss/proto"
-  "tritium_oss/packager"
-  "tritium_oss/dependencies/golog"
-  "tritium_oss/dependencies/steno/dummy"
-  "tritium_oss/linker"
+  "open-tritium/whale"
+  tp "open-tritium/proto"
+  "open-tritium/packager"
+  "open-tritium/dependencies/golog"
+  "open-tritium/dependencies/steno/dummy"
+  "open-tritium/linker"
 )
 
 var pkg *tp.Package

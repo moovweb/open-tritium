@@ -6,9 +6,9 @@ import (
 
 import (
 	pb "code.google.com/p/goprotobuf/proto"
-	"tritium_oss/dependencies/butler/null"
-	"tritium_oss/protoface"
-	"tritium_oss/constants"
+	"open-tritium/dependencies/butler/null"
+	"open-tritium/protoface"
+	"open-tritium/constants"
 )
 
 func (f *Function) Stub(pkg2 protoface.Package) string {

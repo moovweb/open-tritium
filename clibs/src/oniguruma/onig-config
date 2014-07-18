@@ -27,7 +27,7 @@ if test $# -eq 0; then
   show_usage
 fi
 
-prefix=/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/oniguruma
+prefix=/Users/wonjafairbrother1/dev/clibs/output/oniguruma
 exec_prefix=${prefix}
 is_set_exec_prefix=no
 

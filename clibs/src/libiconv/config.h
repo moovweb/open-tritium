@@ -687,7 +687,7 @@
 #define ICONV_CONST 
 
 /* Define to the value of ${prefix}, as a string. */
-#define INSTALLPREFIX "/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/libiconv"
+#define INSTALLPREFIX "/Users/wonjafairbrother1/dev/clibs/output/libiconv"
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */

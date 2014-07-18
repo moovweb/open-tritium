@@ -51,7 +51,7 @@
 #define HAVE_WORKING_O_NOFOLLOW 1
 
 /* Define to the value of ${prefix}, as a string. */
-#define INSTALLPREFIX "/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/libiconv"
+#define INSTALLPREFIX "/Users/wonjafairbrother1/dev/clibs/output/libiconv"
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */

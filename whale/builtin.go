@@ -1,6 +1,6 @@
 package whale
 
-import "tritium_oss/protoface"
+import "open-tritium/protoface"
 
 type builtInFunc func(*EngineContext, *Scope, protoface.Instruction, []interface{}) interface{}
 

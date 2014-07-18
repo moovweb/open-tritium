@@ -9,12 +9,12 @@ import (
 )
 
 import (
-  "tritium_oss/dependencies/butler/crypto"
-  "tritium_oss/dependencies/butler/data"
-  . "tritium_oss/dependencies/butler/docstrings"
+  "open-tritium/dependencies/butler/crypto"
+  "open-tritium/dependencies/butler/data"
+  . "open-tritium/dependencies/butler/docstrings"
   pb "code.google.com/p/goprotobuf/proto"
-  "tritium_oss/proto"
-  "tritium_oss/dependencies/versions"
+  "open-tritium/proto"
+  "open-tritium/dependencies/versions"
 )
 
 type ParseError struct {

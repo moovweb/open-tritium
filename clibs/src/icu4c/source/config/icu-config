@@ -47,7 +47,7 @@ loaddefs()
 # etc.  If ICU is not installed in this directory, you must change the
 # following line.  There should exist ${prefix}/include/unicode/utypes.h
 # for example.
-default_prefix="/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/icu4c"
+default_prefix="/Users/wonjafairbrother1/dev/clibs/output/icu4c"
 if [ "x${prefix}" = "x" ]; then prefix="$default_prefix"; fi
 exec_prefix="${prefix}"
 libdir="${exec_prefix}/lib"
@@ -749,4 +749,4 @@ sanity
 
 exit 0
 
-# Rebuilt on Thu Jul 17 16:05:55 PDT 2014
+# Rebuilt on Fri Jul 18 15:54:11 PDT 2014

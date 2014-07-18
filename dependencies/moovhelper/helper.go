@@ -1,8 +1,8 @@
 package moovhelper
 
-import "tritium_oss/dependencies/moovhelper/logger"
-import "tritium_oss/dependencies/moovhelper/debugger"
-import "tritium_oss/dependencies/moovhelper/script"
+import "open-tritium/dependencies/moovhelper/logger"
+import "open-tritium/dependencies/moovhelper/debugger"
+import "open-tritium/dependencies/moovhelper/script"
 
 const MtkSourceAttr = "data-mtk_source"
 const MtkZeroMatchAttr = "data-mtk_zero_match"

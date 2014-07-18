@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
-	tp "tritium_oss/proto"
+	tp "open-tritium/proto"
 )
 
 func ParseFile(projectPath, scriptPath, fileName string, compilingMixer bool, activeLayers []string) *tp.ScriptObject {

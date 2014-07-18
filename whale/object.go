@@ -2,7 +2,7 @@ package whale
 
 import "github.com/moovweb/rubex"
 import "github.com/moovweb/gokogiri/xpath"
-import "tritium_oss/dependencies/go-cache"
+import "open-tritium/dependencies/go-cache"
 
 type MemoryObject interface {
   Free()

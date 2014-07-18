@@ -18,13 +18,9 @@ encoding.lo: encoding.c libxml.h config.h include/libxml/xmlversion.h \
   /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
   /usr/include/machine/types.h /usr/include/i386/types.h \
   /usr/include/errno.h /usr/include/sys/errno.h \
-  include/libxml/encoding.h \
-  /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include/iconv.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h \
-  /usr/include/wchar.h \
+  include/libxml/encoding.h /usr/include/iconv.h include/libxml/tree.h \
+  include/libxml/xmlstring.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h \
-  /usr/include/time.h /usr/include/_structs.h /usr/include/_wctype.h \
-  include/libxml/tree.h include/libxml/xmlstring.h \
   include/libxml/xmlregexp.h include/libxml/dict.h \
   include/libxml/xmlmemory.h include/libxml/threads.h \
   include/libxml/globals.h include/libxml/parser.h include/libxml/hash.h \
@@ -119,23 +115,13 @@ include/libxml/xmlexports.h:
 
 include/libxml/encoding.h:
 
-/Users/wonjafairbrother1/dev/src/tritium_oss/clibs/include/iconv.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stddef.h:
-
-/usr/include/wchar.h:
-
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
-
-/usr/include/time.h:
-
-/usr/include/_structs.h:
-
-/usr/include/_wctype.h:
+/usr/include/iconv.h:
 
 include/libxml/tree.h:
 
 include/libxml/xmlstring.h:
+
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/5.1/include/stdarg.h:
 
 include/libxml/xmlregexp.h:
 

@@ -4,7 +4,7 @@ import(
 	"fmt"
 	"regexp"
 
-	. "tritium_oss/tritstrings"
+	. "open-tritium/tritstrings"
 )
 
 type Range struct {

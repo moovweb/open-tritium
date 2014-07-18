@@ -6,7 +6,7 @@
 srcdir = .
 
 # Directories used by "make install":
-prefix = /Users/wonjafairbrother1/dev/src/tritium_oss/clibs/output/libiconv
+prefix = /Users/wonjafairbrother1/dev/clibs/output/libiconv
 local_prefix = /usr/local
 exec_prefix = ${prefix}
 datarootdir = ${prefix}/share

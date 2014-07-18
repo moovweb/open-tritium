@@ -1,10 +1,10 @@
 package checker
 
 import (
-	"tritium_oss/dependencies/butler/null"
+	"open-tritium/dependencies/butler/null"
 	"github.com/moovweb/gokogiri/xpath"
-	tp "tritium_oss/proto"
-	"tritium_oss/constants"
+	tp "open-tritium/proto"
+	"open-tritium/constants"
 )
 
 var xpath_funcs []string = []string{

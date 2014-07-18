@@ -2,7 +2,7 @@ package arc
 
 import "container/list"
 //import . "go-cache"
-import "tritium_oss/dependencies/go-cache/base"
+import "open-tritium/dependencies/go-cache/base"
 
 type CdbList struct {
 	l *list.List
