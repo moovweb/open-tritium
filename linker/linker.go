@@ -18,9 +18,9 @@ func RunWithPackage(projectPath, scriptPath, fileName string, pkg *tp.Package, a
 	return runWithObjs(objs, pkg, projectPath, scriptPath)
 }
 
-func RunWithPackage_OSS(src string, pkg *tp.Package, activeLayers []string) (*tp.Transform, error) {
-	objs := parser.Parse(src, "", "", "", false, activeLayers)
-	return runWithObjs(objs, pkg, "", "")
+func RunWithPackage_OSS(src string, scriptPath string, pkg *tp.Package, activeLayers []string) (*tp.Transform, error) {
+	objs := parser.Parse(src, "", scriptPath, "", false, activeLayers)
+	return runWithObjs(objs, pkg, "", scriptPath)
 }
 
 func runWithObjs(objs []*tp.ScriptObject, pkg *tp.Package, projectPath, scriptPath string, ranges ...Range) (*tp.Transform, error) {

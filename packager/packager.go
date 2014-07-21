@@ -103,7 +103,7 @@ func New(relSrcDir, libDir string, mayBuildHttpTransformers bool, logger *golog.
 	return pkgr
 }
 
-func New_OSS(logger *golog.Logger, mixerDownloader downloader) *Packager {
+func New_OSS(relSrcDir string, logger *golog.Logger, mixerDownloader downloader) *Packager {
 	pkgr := new(Packager)
 
 	wd, wdErr := os.Getwd()
@@ -111,7 +111,13 @@ func New_OSS(logger *golog.Logger, mixerDownloader downloader) *Packager {
 		panic("unable to determine current directory for mixer creation")
 	}
 
-	pkgr.MixerDir = ""
+	absSrcDir, absErr := filepath.Abs(relSrcDir)
+	if absErr != nil {
+		panic("unable to absolutize mixer source directory for mixer creation")
+	}
+	absSrcDir = filepath.Clean(absSrcDir)
+	
+	pkgr.MixerDir = absSrcDir
 	pkgr.LibDir = ""
 	pkgr.IncludePaths = make([]string, 2) // support more in the future as a command-line option
 	pkgr.IncludePaths[0] = wd
@@ -626,7 +632,23 @@ func (pkgr *Packager) resolveFunctions_OSS(libstring string) {
 
 	for _, f := range defs.Functions {
 		// if it's an import stub ...
-		if f.GetBuiltIn() {
+		if f.GetName() == "@import" {
+			importPath := f.GetDescription()
+			importExists, _ := fileutil.Exists(filepath.Join(pkgr.MixerDir, importPath))
+			if !importExists {
+				errURL := "http://help.moovweb.com/entries/22335641-importing-non-existent-files-in-functions-main-ts"
+				msg := fmt.Sprintf("\n********\nin file %s:\nattempting to import nonexistent file %s\nPlease consult %s for more information about this error.\n********\n", pkgr.MixerDir, importPath, errURL)
+				panic(msg)
+			}
+			f, err := ioutil.ReadFile(filepath.Join(pkgr.MixerDir, importPath))
+			if err!= nil {
+			  panic(err.Error())
+			}
+			pkgr.resolveFunctions_OSS(string(f))
+			continue // to forgo appending it to the comprehensive list of functions
+
+			// otherwise it's a proper function definition -- see if it's native
+		} else if f.GetBuiltIn() {
 			pkgr.resolveNativeDeclaration(f, "")
 
 			// otherwise it's a user-defined function

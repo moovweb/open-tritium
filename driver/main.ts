@@ -6,6 +6,8 @@ html() {
     # Append a class to the body tag
     add_class("moov")
 
+    @import "importable.ts"
+
     # Sometimes empty blocks break stuff
     $(".") {
     }

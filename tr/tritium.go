@@ -15,14 +15,14 @@ import(
 
 var pkg *tp.Package
 
-func Transform(tscript string, input string) string {
+func Transform(tscript string, input string, importpath string) string {
   logger := golog.NewLogger("tritium")
   logger.AddProcessor("info", golog.NewConsoleProcessor(golog.LOG_INFO, true))
 
-  pkgr := packager.New_OSS(logger, func(name, version string) (mxr *tp.Mixer, err error) {return nil, nil})
+  pkgr := packager.New_OSS(importpath, logger, func(name, version string) (mxr *tp.Mixer, err error) {return nil, nil})
   pkgr.Build_OSS(lib, types)
   pkg = pkgr.Mixer.Package
-  script, _ := linker.RunWithPackage_OSS(tscript, pkg, make([]string, 0))
+  script, _ := linker.RunWithPackage_OSS(tscript, importpath, pkg, make([]string, 0))
 
   // input := readFile(inputfile)
 

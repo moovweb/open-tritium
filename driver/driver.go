@@ -43,21 +43,24 @@ func show_usage() {
   fmt.Println("General purpose Tritium command line interface. Language for html transformation.")
   fmt.Println("\tUsage: \n\t\t 1) tritium [-e|-f]=tritium_script \n\t\t\t Input assumed to be provided as Stdin")
   fmt.Println("\t\t 2) tritium [-e|-f]=\"tritium_script -i=\"input_file\" \n\t\t\t Input provided as a filepath")
+  fmt.Println("\t\t 2) tritium [-e|-f]=\"tritium_script -p=\"import_directory\" \n\t\t\t Where to look for imports")
   fmt.Println("\tOutput is streamed to Stdout")
   fmt.Println("\tFlags:")
   fmt.Println("\t\t -e=\"\": a one-line tritium program passed as a string")
   fmt.Println("\t\t -f=\"\": a filepath to tritium script")
   fmt.Println("\t\t -i=\"\" (optional): a filepath to input html")
+  fmt.Println("\t\t -p=\"\" (optional): a filepath to a directory in which to look for imported scripts")
 }
 
 func main() {
 
   var input, tscript string
 
-  var e, f, i string
+  var e, f, i, p string
   flag.StringVar(&e, "e", "", "executable tritium expression")
   flag.StringVar(&f, "f", "", "filepath to tritium script")
   flag.StringVar(&i, "i", "", "filepath to input html")
+  flag.StringVar(&p, "p", "", "filepath to importable scripts")
 
   flag.Parse()
 
@@ -84,7 +87,12 @@ func main() {
   }
   // fmt.Println(tscript)
   // fmt.Println(input)
-  output := tritium.Transform(tscript, input)
+  importpath := ""
+  if len(p) > 0 {
+    importpath = p
+  }
+
+  output := tritium.Transform(tscript, input, importpath)
 
   // os.Stderr = os.Stdout
   fmt.Fprintf(os.Stdout, "%s", output)
