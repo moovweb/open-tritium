@@ -25,21 +25,26 @@ Currently, it focuses on modifying XML documents only (HTML and XHTML count too)
 
 Check out the examples in /test/functional to get started... but basically.
 
+ ```html
   <html>
     <body>
       <div id="awesome" />
     </body>
   </html>
+  ```
 
 If you pass that in as an input to the following script.
 
+ ```xml
   $("/html/body/div[@id='awesome']") {
     attribute("class", "even_awesomer!")
     wrap("div", class: "wrapper")
   }
+  ```
 
 You'd get back...
 
+ ```html
   <html>
     <body>
       <div class="wrapper">
@@ -47,89 +52,29 @@ You'd get back...
       </div>
     </body>
   </html>
+  ```
 
 
 ## Building Tritium Locally
 
-* This assumes you have Go installed (64-bit) and have setup your $GOPATH
+This assumes the following:
+* you have Go installed (64-bit) and have setup your $GOPATH
 ex. `export GOPATH=/Users/Yourname/dev`
-
-### Setup MOOV_HOME
-
-Set $MOOV_HOME var to be your GOPATH:
-`export MOOV_HOME=$GOPATH`
-
-### Fetch the dependencies
-
-`go get code.google.com/p/goprotobuf/proto`
-
-Note: goprotobuf requires [Mercurial](http://mercurial.selenic.com/) which is required to fetch the latest version.
-
-Fetch the moovweb repositories for gokogiri.
-For current compatability, switch to the 'oss' branch.
-
-`cd $GOPATH`
-
-`go get github.com/moovweb/gokogiri`
-
-`cd src/github.com/moovweb/gokogiri ; git checkout oss`
-
-`go install`
-
-### Build and install our required clibs.
-
-Versions have been locked for our development processes. Clibs can be installed anywhere but the following steps assume they are placed inside a GOPATH/clibs/ folder. Source can be cloned into GOPATH/clibs/src and built. EX:
-
-`mkdir $GOPATH/clibs; mkdir $GOPATH/clibs/src; cd $GOPATH/clibs/src`
-
-You will need to have autoconf, automake, and libtool installed. If you dont:
-
-`brew install autoconf`
-
-`brew install automake`
-
-`brew install libtool`
-
-Note: you may wish to create an environment variable to this clibs directory, $CLIBS_HOME
-
-For each of the 5 libraries, enter the folder under clibs/src in this repo and build each of them with
-
-`cd clibs/src/icu4c`
-`./build.sh`
-
-`cd clibs/src/libiconv`
-`./build.sh`
-
-`cd clibs/src/libxml2`
-`./build.sh`
-
-`cd clibs/src/libyaml`
-`./build.sh`
-
-`cd clibs/src/oniguruma`
-`./build.sh`
-
-$GOPATH/clibs/ should now contain the built /bin /includes and /lib folders for use within the Tritium application
-
-Fetch the moovweb repositories for rubex.
-For current compatability, switch to the 'oss' branch.
-
-`cd $GOPATH`
-
-`go get -d github.com/moovweb/rubex`
-
-`cd src/github.com/moovweb/rubex ; git checkout oss`
-
-`go install`
+* This repo has been cloned into $GOPATH/src
+* [Mercurial](http://mercurial.selenic.com/) is installed
+* autoconf, automake, and libtool are installed. ex. `brew install autoconf; brew install automake; brew install libtool;`
 
 
-### Clone this Repo
+When you have those requirements set up, you may run the build script in this folder:
 
-Clone this repo into your $GOPATH/src folder:
+`$GOPATH/src/open-tritium/build`
 
-`cd $GOPATH/src`
-
-`git clone git@github.com:moovweb/open-tritium`
+This will fetch and install all the required dependencies for tritium and set up some environment variables for you. Namely:
+* code.google.com/p/goprotobuf/proto
+* github.com/moovweb/gokogiri
+* github.com/moovweb/rubex
+* icu4c, libiconv, libxml2, libyaml, and oniguruma in $GOPATH/clibs
+* Set $MOOV_HOME var to be your GOPATH
 
 
 ### Building the Driver from src (optional)
