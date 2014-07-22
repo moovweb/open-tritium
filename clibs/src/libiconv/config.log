@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 237 tasks, 1627 threads, 4 processors
-Load average: 5.82, Mach factor: 0.58
+Default processor set: 249 tasks, 1736 threads, 4 processors
+Load average: 6.53, Mach factor: 0.44
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -528,11 +528,11 @@ configure:14218: checking for iconv
 configure:14242: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_iconv", referenced from:
-      _main in conftest-7820b1.o
+      _main in conftest-d75c2f.o
   "_iconv_close", referenced from:
-      _main in conftest-7820b1.o
+      _main in conftest-d75c2f.o
   "_iconv_open", referenced from:
-      _main in conftest-7820b1.o
+      _main in conftest-d75c2f.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:14242: $? = 1
@@ -1168,7 +1168,7 @@ configure:16624: checking for canonicalize_file_name
 configure:16624: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_canonicalize_file_name", referenced from:
-      _main in conftest-79c64d.o
+      _main in conftest-5f6930.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16624: $? = 1
@@ -1287,7 +1287,7 @@ configure:16624: checking for readlinkat
 configure:16624: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_readlinkat", referenced from:
-      _main in conftest-848eb5.o
+      _main in conftest-67083e.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16624: $? = 1
@@ -12420,7 +12420,9 @@ config.status:1882: creating tests/Makefile
 config.status:1882: creating include/iconv.h
 config.status:1882: creating include/iconv.h.inst
 config.status:1882: creating config.h
+config.status:2063: config.h is unchanged
 config.status:1882: creating lib/config.h
+config.status:2063: lib/config.h is unchanged
 config.status:2111: executing depfiles commands
 config.status:2111: executing libtool commands
 config.status:2111: executing po-directories commands

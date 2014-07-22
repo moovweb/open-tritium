@@ -4,6 +4,7 @@ import (
 	// "fmt"
 	"io/ioutil"
 	"path/filepath"
+	"log"
 
 	tp "open-tritium/proto"
 )
@@ -57,12 +58,14 @@ func readFile(projectPath, scriptPath, fileName string) (src, fullpath string) {
 	// The parser checks whether the file exists now, and provides a better error message.
 	// But might as well leave these here as failsafes.
 	if err != nil {
-		panic("No tritium file found at: " + scriptLocationInProject)
+		log.Fatal("No tritium file found at: " + scriptLocationInProject)
+		// panic("No tritium file found at: " + scriptLocationInProject)
 	}
 	srcBytes, err := ioutil.ReadFile(fullpath)
 
 	if err != nil {
-		panic("No tritium file found at: " + scriptLocationInProject)
+		log.Fatal("No tritium file found at: " + scriptLocationInProject)
+		// panic("No tritium file found at: " + scriptLocationInProject)
 	}
 	src = string(srcBytes)
 	return

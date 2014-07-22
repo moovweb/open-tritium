@@ -13,6 +13,7 @@ import (
 	"open-tritium/constants"
 	. "open-tritium/tritstrings"
 	"open-tritium/dependencies/butler/fileutil"
+	"log"
 )
 
 type Parser struct {
@@ -92,7 +93,8 @@ func (p *Parser) error(msg string) {
 			val1,
 			val2)
 	}
-	panic(fullMsg)
+	log.Fatal(fullMsg)
+	// panic(fullMsg)
 }
 
 func MakeParser(src, projectPath, scriptPath, fileName string, isRootFile bool, compilingMixer bool, activeLayers []string) *Parser {
@@ -248,7 +250,8 @@ func (p *Parser) statement() (node *tp.Instruction) {
 			optional = true
 		}
 		if p.inFunc {
-			panic(fmt.Sprintf("|%s:%d -- imports not allowed inside function definitions", p.FileName, p.peek().LineNumber))
+			log.Fatal(fmt.Sprintf("|%s:%d -- imports not allowed inside function definitions", p.FileName, p.peek().LineNumber))
+			// panic(fmt.Sprintf("|%s:%d -- imports not allowed inside function definitions", p.FileName, p.peek().LineNumber))
 		}
 		token := p.pop() // pop the "@import" or "@optional" token (includes importee)
 		importPath := token.Value
@@ -259,7 +262,8 @@ func (p *Parser) statement() (node *tp.Instruction) {
 
 			if len(p.ActiveLayers) == 0 {
 				if !optional {
-					panic(fmt.Sprintf(SQUID_PARSER_LAYER_NOT_GIVEN_ERR, p.FileName, token.LineNumber))
+					log.Fatal(fmt.Sprintf(SQUID_PARSER_LAYER_NOT_GIVEN_ERR, p.FileName, token.LineNumber))
+					// panic(fmt.Sprintf(SQUID_PARSER_LAYER_NOT_GIVEN_ERR, p.FileName, token.LineNumber))
 				} else {
 					// make a no-op if the import is optional and no layer has been provided
 					node = tp.MakeText("", token.LineNumber)
@@ -268,7 +272,8 @@ func (p *Parser) statement() (node *tp.Instruction) {
 			}
 
 			if len(p.ActiveLayers) > 1 {
-				panic(fmt.Sprintf(SQUID_PARSER_AMBIGUOUS_LAYER_IMPORT_ERR, p.FileName, token.LineNumber))
+				log.Fatal(fmt.Sprintf(SQUID_PARSER_AMBIGUOUS_LAYER_IMPORT_ERR, p.FileName, token.LineNumber))
+				// panic(fmt.Sprintf(SQUID_PARSER_AMBIGUOUS_LAYER_IMPORT_ERR, p.FileName, token.LineNumber))
 			}
 
 			for only, _ := range p.ActiveLayers {
@@ -304,7 +309,8 @@ func (p *Parser) statement() (node *tp.Instruction) {
 		// make sure that the importee is under the right subfolder
 		if !strings.HasPrefix(scriptLocationInProject, dir) {
 			msg := fmt.Sprintf("%s:%d -- imported file must exist under the `%s` folder", p.FileName, token.LineNumber, dir)
-			panic(msg)
+			log.Fatal(msg)
+			// panic(msg)
 		}
 
 		// now make sure the file exists and give a helpful message if it's a layer file
@@ -315,9 +321,11 @@ func (p *Parser) statement() (node *tp.Instruction) {
 				node = tp.MakeText("", token.LineNumber)
 				return
 			} else if layered {
-				panic(fmt.Sprintf(SQUID_PARSER_LAYER_FILE_NOT_FOUND_ERR, p.FileName, p.LineNumber, theOnlyLayer, scriptLocationInProject))
+				log.Fatal(fmt.Sprintf(SQUID_PARSER_LAYER_FILE_NOT_FOUND_ERR, p.FileName, p.LineNumber, theOnlyLayer, scriptLocationInProject))
+				// panic(fmt.Sprintf(SQUID_PARSER_LAYER_FILE_NOT_FOUND_ERR, p.FileName, p.LineNumber, theOnlyLayer, scriptLocationInProject))
 			} else {
-				panic(fmt.Sprintf("%s:%d -- file to import not found (%s)", p.FileName, p.LineNumber, scriptLocationInProject))
+				log.Fatal(fmt.Sprintf("%s:%d -- file to import not found (%s)", p.FileName, p.LineNumber, scriptLocationInProject))
+				// panic(fmt.Sprintf("%s:%d -- file to import not found (%s)", p.FileName, p.LineNumber, scriptLocationInProject))
 			}
 		}
 
@@ -494,7 +502,8 @@ func (p *Parser) read() (node *tp.Instruction) {
 		}
 		readDir = p.pop().Value
 		if filepath.IsAbs(readDir) {
-			panic(fmt.Sprintf("%s:%d -- second argument to `read` must be a relative path", p.FileName, readLineNo))
+			log.Fatal(fmt.Sprintf("%s:%d -- second argument to `read` must be a relative path", p.FileName, readLineNo))
+			// panic(fmt.Sprintf("%s:%d -- second argument to `read` must be a relative path", p.FileName, readLineNo))
 		}
 	}
 	if p.peek().Lexeme != RPAREN {
@@ -512,11 +521,13 @@ func (p *Parser) read() (node *tp.Instruction) {
 	absReadPath, err := filepath.Abs(fullReadPath)
 	if err != nil {
 		msg := fmt.Sprintf("%s:%d -- `read` could not resolve the full path to %s", p.FileName, readLineNo, readPath)
-		panic(msg)
+		log.Fatal(msg)
+		// panic(msg)
 	}
 	if !strings.HasPrefix(absReadPath, filepath.Join(p.ProjectPath)) {
 		msg := fmt.Sprintf("%s:%d -- `read` cannot open files outside the project folder", p.FileName, readLineNo)
-		panic(msg)
+		log.Fatal(msg)
+		// panic(msg)
 	}
 
 	contents, err := ioutil.ReadFile(absReadPath)
@@ -528,7 +539,8 @@ func (p *Parser) read() (node *tp.Instruction) {
 			msgPath = filepath.Join(readDir, readPath)
 		}
 		msg := fmt.Sprintf("%s:%d -- `read` could not open %s", p.FileName, readLineNo, msgPath)
-		panic(msg)
+		log.Fatal(msg)
+		// panic(msg)
 	}
 	node = tp.MakeText(string(contents), readLineNo)
 	return node
@@ -839,7 +851,8 @@ func (p *Parser) function_body(funcName string) (stmts []*tp.Instruction) {
 			// stupid hack for handling the 'import in a function' error
 			fullMessage := r.(string)
 			if fullMessage[0] == '|' {
-				panic(fullMessage[1:])
+				log.Fatal(fullMessage[1:])
+				// panic(fullMessage[1:])
 			}
 			// pull out the actual message without the filename/line-no
 			msg := strings.Split(strings.Split(r.(string), "-- ")[1], "; ")[0]

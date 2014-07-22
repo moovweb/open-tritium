@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 243 tasks, 1642 threads, 4 processors
-Load average: 2.33, Mach factor: 1.68
+Default processor set: 252 tasks, 1792 threads, 4 processors
+Load average: 6.48, Mach factor: 0.67
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1583,7 +1583,7 @@ configure:13579: checking for isnand
 configure:13579: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_isnand", referenced from:
-      _main in conftest-0ce0ba.o
+      _main in conftest-22b335.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:13579: $? = 1
@@ -1689,7 +1689,7 @@ configure:13579: checking for fp_class
 configure:13579: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_fp_class", referenced from:
-      _main in conftest-133e5f.o
+      _main in conftest-3eb202.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:13579: $? = 1
@@ -1795,7 +1795,7 @@ configure:13579: checking for class
 configure:13579: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_class", referenced from:
-      _main in conftest-5d706d.o
+      _main in conftest-5cde3b.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:13579: $? = 1
@@ -1901,7 +1901,7 @@ configure:13579: checking for fpclass
 configure:13579: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_fpclass", referenced from:
-      _main in conftest-fe8d3e.o
+      _main in conftest-24c7ee.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:13579: $? = 1
@@ -2025,7 +2025,7 @@ configure:13603: checking for _stat
 configure:13603: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__stat", referenced from:
-      _main in conftest-537fad.o
+      _main in conftest-2d95b5.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:13603: $? = 1
@@ -2253,7 +2253,7 @@ configure:14480: checking for shl_load
 configure:14480: gcc -o conftest -g -O2 -pedantic -W -Wformat -Wunused -Wimplicit -Wreturn-type -Wswitch -Wcomment -Wtrigraphs -Wformat -Wchar-subscripts -Wuninitialized -Wparentheses -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Winline -Wredundant-decls   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_shl_load", referenced from:
-      _main in conftest-e29b9f.o
+      _main in conftest-671eaa.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:14480: $? = 1
@@ -2507,9 +2507,9 @@ configure:15186: checking for iconv
 configure:15202: gcc -o conftest -g -O2 -pedantic -W -Wformat -Wunused -Wimplicit -Wreturn-type -Wswitch -Wcomment -Wtrigraphs -Wformat -Wchar-subscripts -Wuninitialized -Wparentheses -Wshadow -Wpointer-arith -Wcast-align -Wwrite-strings -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Winline -Wredundant-decls  -I/Users/wonjafairbrother1/dev/clibs/include  conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_iconv", referenced from:
-      _main in conftest-7d4e9b.o
+      _main in conftest-8be97f.o
   "_iconv_open", referenced from:
-      _main in conftest-7d4e9b.o
+      _main in conftest-8be97f.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15202: $? = 1
@@ -2925,7 +2925,7 @@ RDL_LIBS=''
 READER_TEST='Readertests'
 REBUILD_DOCS_FALSE=''
 REBUILD_DOCS_TRUE='#'
-RELDATE='Fri Jul 18 2014'
+RELDATE='Mon Jul 21 2014'
 RM='/bin/rm'
 SED='/usr/bin/sed'
 SET_MAKE=''
