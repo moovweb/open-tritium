@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"log"
 )
 
 import (
@@ -19,7 +20,8 @@ func NewMixer(path string) *Mixer {
 	version, err := ioutil.ReadFile(filepath.Join(path, "VERSION"))
 
 	if err != nil {
-		panic("Couldn't find a version for mixer:" + path + ":" + err.Error())
+		log.Fatal("Couldn't find a version for mixer:" + path + ":" + err.Error())
+		// panic("Couldn't find a version for mixer:" + path + ":" + err.Error())
 	}
 
 	versionStr := strings.TrimSpace(string(version))
@@ -88,12 +90,14 @@ func (m *Mixer) Unpack(path string) {
 	fullPath := filepath.Join(path, null.GetString(m.Name)+"-"+null.GetString(m.Version))
 	err := os.MkdirAll(fullPath, 0755)
 	if err != nil {
-		panic(err.Error())
+		log.Fatal(err.Error())
+		// panic(err.Error())
 	}
 
 	err = m.unpackFiles(filepath.Join(fullPath, "rewriters"), m.Rewriters)
 	if err != nil {
-		panic(err)
+		log.Fatal(err.Error())
+		// panic(err)
 	}
 
 	summary := m.packageSummary(true)
@@ -138,7 +142,8 @@ func (m *Mixer) packageSummary(printFunctions bool) string {
 func (mxr *Mixer) Clone() *Mixer {
 	bytes, err := pb.Marshal(mxr)
 	if err != nil {
-		panic("internal error: unable to copy mixer " + mxr.GetName())
+		log.Fatal("internal error: unable to copy mixer " + mxr.GetName())
+		// panic("internal error: unable to copy mixer " + mxr.GetName())
 	}
 	copy := new(Mixer)
 	pb.Unmarshal(bytes, copy)

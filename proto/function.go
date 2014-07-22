@@ -2,6 +2,7 @@ package proto
 
 import (
 	"fmt"
+	"log"
 )
 
 import (
@@ -67,7 +68,8 @@ func (fun *Function) Clone() protoface.Function {
 	bytes, err := pb.Marshal(fun)
 
 	if err != nil {
-		panic("Couldn't clone function" + null.GetString(fun.Name))
+		log.Fatal("Couldn't clone function" + null.GetString(fun.Name))
+		// panic("Couldn't clone function" + null.GetString(fun.Name))
 	}
 
 	newFun := &Function{}

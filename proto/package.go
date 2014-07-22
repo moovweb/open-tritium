@@ -1,6 +1,10 @@
 package proto
 
 import (
+	"log"
+)
+
+import (
 	"open-tritium/dependencies/butler/null"
 	pb "code.google.com/p/goprotobuf/proto"
 )
@@ -26,7 +30,8 @@ func (pkg *Package) GetProtoTypeId(name *string) *int32 {
 		scopeTypeId = pkg.GetTypeId(typeName)
 
 		if scopeTypeId == -1 {
-			panic("Didn't find type " + typeName)
+			log.Fatal("Didn't find type " + typeName)
+			// panic("Didn't find type " + typeName)
 		}
 		//println("Set scope ID to ", scopeTypeId)
 	}

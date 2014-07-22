@@ -174,7 +174,8 @@ func (ctx *LinkingContext) ProcessInstructionWithLocalScope(ins *tp.Instruction,
 		val, present := ctx.Visiting[importLocation]
 		if present && val {
 			ctx.error(ins, "Circular import detected: %s", importLocation)
-			panic(fmt.Sprintf("Circular import detected: %s", importLocation))
+			log.Fatal(fmt.Sprintf("Circular import detected: %s", importLocation))
+			// panic(fmt.Sprintf("Circular import detected: %s", importLocation))
 		}
 		ctx.Visiting[importLocation] = true
 
@@ -356,7 +357,7 @@ func (ctx *LinkingContext) error(obj interface{}, format string, data ...interfa
 	if ok {
 		ins.IsValid = proto.Bool(false)
 	}
-	log.Printf("%s\n", message)
+	// log.Printf("%s\n", message)
 }
 
 func readableStub(stub string) string {

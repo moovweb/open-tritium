@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"log"
 )
 
 import (
@@ -174,12 +175,14 @@ func (ctx *EngineContext) RunInstruction(scope *Scope, ins protoface.Instruction
 					}
 				}
 			}
-			panic(errString)
+			log.Fatal(errString)
+			// panic(errString)
 		}
 	}()
 	ctx.Whale.Debugger.TrapInstruction(ctx.MessagePath, ctx.Filename, ctx.Env, ins, scope.Value, scope.Index, ctx.CurrentDoc)
 	if time.Now().After(ctx.Deadline) && !ctx.InDebug {
-		panic(TimeoutError)
+		log.Fatal(TimeoutError)
+		// panic(TimeoutError)
 	}
 
 	indent := ""
@@ -241,7 +244,8 @@ func (ctx *EngineContext) RunInstruction(scope *Scope, ins protoface.Instruction
 					returnValue = ""
 				}
 			} else {
-				panic("missing function: " + fun.IGetName())
+				log.Fatal("missing function: " + fun.IGetName())
+				// panic("missing function: " + fun.IGetName())
 			}
 			ctx.Filename = curFile
 		} else {
@@ -384,7 +388,8 @@ func (ctx *EngineContext) GetRegexp(pattern, options string) (r *rubex.Regexp) {
 			//ctx.AddMemoryObject(r)
 			ctx.RegexpCache.Set(sig, &RegexpObject{Regexp: r})
 		} else {
-			panic(fmt.Sprintf("%s: /%s/%s", err.Error(), pattern, options))
+			log.Fatal(fmt.Sprintf("%s: /%s/%s", err.Error(), pattern, options))
+			// panic(fmt.Sprintf("%s: /%s/%s", err.Error(), pattern, options))
 		}
 		return r
 	}

@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"log"
 )
 
 import (
@@ -64,7 +65,8 @@ func (fl *FileList) Unpack(verbose bool) (err error) {
 		err = os.MkdirAll(path, 0755)
 
 		if err != nil {
-			panic(err.Error())
+			log.Fatal(err.Error())
+			// panic(err.Error())
 		}
 
 		err = file.Write(fl.RootDirectory)
@@ -85,7 +87,8 @@ func (fl *FileList) buildFile(path string) *File {
 	data, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		panic("Could not read file (" + path + "):" + err.Error())
+		log.Fatal("Could not read file (" + path + "):" + err.Error())
+		// panic("Could not read file (" + path + "):" + err.Error())
 	}
 
 	path = relativePath(fl.RootDirectory, path)

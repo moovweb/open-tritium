@@ -1,7 +1,8 @@
 package linker
 
 import (
-	"errors"
+	// "errors"
+	"log"
 
 	parser "open-tritium/parser"
 	tp "open-tritium/proto"
@@ -31,7 +32,8 @@ func runWithObjs(objs []*tp.ScriptObject, pkg *tp.Package, projectPath, scriptPa
 		for _, msg := range ctx.Errors {
 			message = message + "\n" + msg
 		}
-		return nil, errors.New(message)
+		log.Fatal(message)
+		// return nil, errors.New(message)
 	}
 
 	return ctx.Transform, nil
