@@ -1,0 +1,48 @@
+---
+layout: default
+title: Namespaces | Training
+name: training
+training_selected: selected
+---
+
+<div id="page" class="copy">
+
+<h1 id="tritium-libraries-mixers-namespaces">Tritium Libraries (Mixers): Namespaces</h1>
+<p>A namespace is a self-contained set of functions or variables. They are most commonly found in libraries added to your project.</p>
+<p>The default namespace for a project is the <code>tritium</code> namespace.</p>
+
+<h2 id="defining-a-namespace">Defining a Namespace</h2>
+<p>To define a namespace, use the following:</p>
+<pre data-lang="ts">@namespace json&#x000A;</pre>
+
+<h3 id="including-other-namespaces">Including Other Namespaces</h3>
+<p>In order to carry over functions from other namespaces, you can add those to the opening definition:</p>
+<pre data-lang="ts">@namespace json, tritium&#x000A;</pre>
+<p>The above line means that when using the namespace <code>json</code>, the Tritium namespace will also be included. Tritium functions can then be used inside the <code>json</code> namespace.</p>
+<div class="callout warning">  <p>Variables are not inherited in the same way: in the above example, variables defined in the <code>tritium</code> namespace are <em>not</em> available in the <code>json</code> namespace. This includes environment variables (e.g., <code>$path</code>).</p>
+</div>
+
+<h2 id="using-a-namespace">Using a Namespace</h2>
+<p>To use a namespace, just use the <code>@open</code> function with the name of the namespace:</p>
+<pre data-lang="ts">@open json&#x000A;</pre>
+<p>After that, you can use functions or variables from that namespace. The namespace will only be opened within the current scope.</p>
+
+<h3 id="using-functions-outside-of-the-namespace">Using Functions Outside of the Namespace</h3>
+<p>You can use functions outside of the namespace&#8202;&#8212;&#8202;just prepend the function with the namespace required.</p>
+<p>For example, to use a <code>json</code> function inside the Tritium namespace:</p>
+<pre data-lang="ts">json.inner()&#x000A;</pre>
+
+<h2 id="example">Example</h2>
+<p>In the example below, we:</p>
+<ol>
+  <li>Define a namespace</li>
+  <li>Write a function which will appear in the <code>json</code> namspace</li>
+  <li>Use a function from the <code>tritium</code> namespace</li>
+  <li>Open the <code>json</code> namespace to use the <code>foo()</code> function</li>
+  <li>Close the <code>json</code> namespace by closing the current scope</li>
+  <li>Use the <code>foo()</code> function <em>outside</em> the <code>json</code> namespace</li>
+</ol>
+<p>Example:</p>
+<pre data-lang="ts">@namespace json, tritium&#x000A;&#x000A;@func foo(Text %bar) {&#x000A;  log("IMPORTANT MESSAGE:" + %bar)&#x000A;}&#x000A;&#x000A;# ------------------------------------------------------&#x000A;&#x000A;$("./body") {&#x000A;  $("./div") {&#x000A;    @open json&#x000A;    foo("bar")&#x000A;  }&#x000A;  json.foo("pop")&#x000A;}&#x000A;</pre>
+
+</div>

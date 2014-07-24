@@ -1,0 +1,19 @@
+### Site settings
+title: Open Tritium
+email: open-tritium@moovweb.com
+description: "Tritium is a simple scripting language for efficiently transforming structured data."
+baseurl: "/open-tritium"
+url: "http://www.open-tritium.io"
+twitter_username: moovwebdev
+github_username:  moovweb
+
+### Build settings
+sass:
+    sass_dir: _sass
+    style: compressed
+source: .
+destination: _site
+layouts: _layouts
+markdown: kramdown
+permalink: pretty
+highligher: pygments

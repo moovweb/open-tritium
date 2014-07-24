@@ -1,0 +1,88 @@
+#home-page {
+  #banner {
+    background: $slategray;
+    color: #bcc2ca;
+    font-size: 48px;
+    font-weight: 300;
+    margin: -$sp2 0 $sp3;
+    padding: $sp4 0 $sp3;
+    text-align: right;
+    small {
+      font-size: 20px;
+      font-style: italic;
+    }
+  }
+  @include mobile {
+    .btnbar .btn {
+      min-width: 0;
+    }
+  }
+  #clients {
+    margin: 0 0 $sp2;
+    text-align: center;
+    a {
+      display: inline-block;
+      margin: 0 $sp $sp2;
+    }
+    img {
+      @include border-radius(5px);
+      vertical-align: top;
+      @include mobile {
+        width: 75px;
+      }
+    }
+  }
+}
+
+div#intro-header {
+  font-weight: 300;
+  h1 { 
+    // color: #bcc2ca;
+    color: white;
+    font-size: 48px;
+    line-height: 1.33;
+    
+    text-align: center;
+    max-width: $page-width;
+    margin: 1em auto;
+    @include mobile {
+      font-size: 32px;
+      line-height: 1.33;
+      margin: 1em;
+    }
+  }
+  img {
+    margin-bottom: 1em;
+    @include mobile {
+      max-width: 90%;
+    }
+  }
+  p:not(.text-center) {
+    font-size: 21px;
+
+    line-height: 1.6;
+    text-align: center;
+    max-width: $page-width;
+    margin: 1em auto;
+    @include mobile {
+      font-size: 16px;
+      line-height: 1.4;
+      margin: 1em;
+    }
+  }
+    padding-bottom: 1.5em;
+    margin-top: -1.25em;
+    margin-bottom: 3em;
+    border-bottom: 1px solid $gray;
+    background-color: $lightgray;
+    @include mobile {
+      margin-top: -1em;
+      margin-bottom: 1em;
+    }
+}
+
+.doc-section {
+  padding-bottom: 0;
+  margin-bottom: 2em;
+}
+

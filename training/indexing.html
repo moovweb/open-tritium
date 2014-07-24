@@ -1,0 +1,43 @@
+---
+layout: default
+title: Indexing | Training
+name: training
+training_selected: selected
+---
+
+<div id="page" class="copy">
+
+<h1 id="indexing-an-element">Indexing an Element</h1>
+
+<h2 id="index">Index</h2>
+
+<p>The <code>index()</code> function is used to keep track of how many times a Tritium function iterates.</p>
+<p>After a selector, the <code>index()</code> function will go through each possible selection of the element and assign a number based on its index. Each iteration will increase the index by 1. So the first element will be &#8220;1&#8221;, the second &#8220;2&#8221; and so on.</p>
+<p>The index could then be used</p>
+<ul>
+  <li>
+    <p>in a log statement:</p>
+    <pre data-lang="ts">$("//div") {&#x000A;  log(index())&#x000A;}&#x000A;</pre>
+    <p>will iterate through every <code>&lt;div&gt;</code> in the document and log a number per <code>&lt;div&gt;</code>&#8202;&#8212;&#8202;the last log message will be the total number of <code>&lt;div&gt;</code>s in the structure.</p>
+  </li>
+  <li>
+    <p>to add a class to elements:</p>
+    <pre data-lang="ts">$("//table") {&#x000A;  add_class(index())&#x000A;}&#x000A;</pre>
+    <p>will take every <code>&lt;table&gt;</code> and add a class based on where the <code>&lt;table&gt;</code> is in the DOM&#8202;&#8212;&#8202;the first <code>&lt;table&gt;</code> will have the class <code>"1"</code>, and so on.</p>
+  </li>
+</ul>
+<p>Note that because it counts iterations of how many times the previous function is performed, the <code>index()</code> function will <strong>not</strong> assign an index value based on sibling number (see example below).</p>
+
+<h2 id="example">Example</h2>
+<p>Given the following HTML:</p>
+<pre data-lang="html">&lt;ul&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;</pre>
+<p>We can use the <code>index()</code> function to assign different <code>&lt;li&gt;</code>s unique classes.</p>
+<p>The following Tritium:</p>
+<pre data-lang="ts">$("./ul") {&#x000A;  $("./li") {&#x000A;    attribute("class", index())&#x000A;  }&#x000A;}&#x000A;</pre>
+<p>will give the following output:</p>
+<pre data-lang="html">&lt;ul&gt;&#x000A;  &lt;li class="1"&gt;&lt;/li&gt;&#x000A;  &lt;li class="2"&gt;&lt;/li&gt;&#x000A;  &lt;li class="3"&gt;&lt;/li&gt;&#x000A;  &lt;li class="4"&gt;&lt;/li&gt;&#x000A;  &lt;li class="5"&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;</pre>
+<p>The following Tritium:</p>
+<pre data-lang="ts">$("./ul") {&#x000A;  $("./li[3]") {&#x000A;    attribute("class", index())&#x000A;  }&#x000A;}&#x000A;</pre>
+<p>will give the following output:</p>
+<pre data-lang="html">&lt;ul&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li class="1"&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;  &lt;li&gt;&lt;/li&gt;&#x000A;&lt;/ul&gt;&#x000A;</pre>
+</div>

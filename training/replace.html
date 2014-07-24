@@ -1,0 +1,48 @@
+---
+layout: default
+title: Replace | Training
+name: training
+training_selected: selected
+---
+
+<div id="page" class="copy">
+
+<h1 id="replace-text">Replace Text</h1>
+<p>Some of the more advanced aspects of Tritium come into play with the <code>replace()</code> function. It&#8217;s pretty straightforward in principle: you can replace one string with another.</p>
+<p>When replacing text, you can also use regular expressions (&#8220;regex&#8221;) to specify what you want to replace.</p>
+<hr />
+
+<h2 id="replace">Replace</h2>
+<p>Take a <code>&lt;div&gt;</code> with some text inside, like so:</p>
+<pre data-lang="html">&lt;div&gt;&#x000A;  Here is my text.&#x000A;&lt;/div&gt;&#x000A;</pre>
+<p>To replace the text with something else, use the <code>inner()</code> function to specify that you are doing something with the entire contents of the <code>&lt;div&gt;</code>. Then, use <code>replace()</code>:</p>
+<pre data-lang="ts">$$("div") {&#x000A;  inner() {&#x000A;    replace("Here is my text.", "Some other text.")&#x000A;  }&#x000A;}&#x000A;</pre>
+<p>The whole contents of the <code>&lt;div&gt;</code> are replaced.</p>
+<pre data-lang="html">&lt;div&gt;&#x000A;  Some other text.&#x000A;&lt;/div&gt;&#x000A;</pre>
+<p>To do something more delicate&#8202;&#8212;&#8202;such as replacing one word&#8202;&#8212;&#8202;use regular expressions. But more about that after a real-life example.</p>
+<hr />
+
+<h2 id="nytimes-example">NYTimes Example</h2>
+<p>Using regex can be quite confusing, so first a &#8220;normal&#8221; example (just replacing a snippet of text with some new text) before introducing regex. Inspect the date to find a good ID or class to use as a selector.</p>
+<p><img src="/images/training/date.png" alt="Date" /></p>
+<p>Use the <code>&lt;div&gt;</code> with the ID <code>"date"</code>.</p>
+<pre data-lang="ts">$$("#date")&#x000A;</pre>
+<p>However, what will be changed is the paragraph within the <code>&lt;div&gt;</code>. So, select the <code>&lt;p&gt;</code> that&#8217;s the child of <code>#date</code>. Note the use of the &#8220;direct child&#8221; CSS selector, &#8220;<code>&gt;</code>&#8221;.</p>
+<pre data-lang="ts">$$("#date") {&#x000A;  $$("&gt; p")&#x000A;}&#x000A;</pre>
+<p>Use the function <code>inner()</code> to modify whatever is <em>inside</em> the <code>&lt;p&gt;</code>.</p>
+<pre data-lang="ts">$$("#date") {&#x000A;  $$("&gt; p") {&#x000A;    inner()&#x000A;  }&#x000A;}&#x000A;</pre>
+<p>Finally, the <code>replace()</code> function.</p>
+<pre data-lang="ts">$$("#date") {&#x000A;  $$("&gt; p") {&#x000A;    inner() {&#x000A;      replace("Tuesday, November 29, 2011", "Tuesday, August 25, 1987")&#x000A;    }&#x000A;  }&#x000A;}&#x000A;</pre>
+<p>Every time the phrase &#8220;Tuesday, November 29, 2011&#8221; appears within the paragraph, it will be replaced with &#8220;Tuesday, August 25, 1987&#8221;.</p>
+<p><img src="/images/training/date_modified.png" alt="Date" /></p>
+<hr />
+
+<h2 id="regex-with-replace">Regex with Replace</h2>
+<p>The examples above have to define the whole piece of text to be replaced. This could get seriously painful if the goal was to replace one word in the whole of a paragraph. The whole paragraph would have to be typed out, then typed out again with the single word changed. Thankfully, the <code>replace()</code> function can use regex instead of plain text. It allows the matching of strings within the document using some special characters.</p>
+<p>For example, square brackets mean &#8220;match any character within&#8221;&#8202;&#8212;&#8202;&#8220;<code>[aeiou]</code>&#8221; means &#8220;match any vowel&#8221;. You can use this with the <code>replace()</code> function:</p>
+<pre data-lang="ts">$$("p") {&#x000A;  inner() {&#x000A;    replace(/[aeiou]/, "*")&#x000A;  }&#x000A;}&#x000A;</pre>
+<p>The Tritium above will take all the paragraphs and look for their inner content. It will then replace any lowercase vowel with an asterisk. This is the result:</p>
+<p><img src="/images/training/replace_vowels.png" alt="Replacing vowels" /></p>
+<p>Regular expressions can get very complicated. There are some decent resources on regex <a href="http://www.w3schools.com/jsref/jsref_obj_regexp.asp" target="_blank">here</a> and <a href="http://www.troubleshooters.com/codecorn/littperl/perlreg.htm" target="_blank">here</a>.</p>
+
+</div>

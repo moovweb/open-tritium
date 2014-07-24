@@ -1,0 +1,26 @@
+<a id="github-ribbon" class="m-hide" href="https://github.com/moovweb/open-tritium" target="_blank">Fork me on GitHub</span></a>
+<header id="header">
+  <div class="content">
+    <a href="{{ "/" | prepend: site.baseurl }}" id="opentritiumlogo" class="d-pull-left"></a>
+    <ul class="header-links d-pull-right m-clearfix">
+      <li class="menu_interaction m-col-6">
+        <a href="javascript:void(0)" {% if page.reference_selected %}class="selected"{% endif %}>Reference</a>
+        <ul>
+          <li><a href="{{ "/reference/xpath_intro/" | prepend: site.baseurl }}">XPath Intro</a></li>
+          <li><a href="{{ "/reference/tritium_cheatsheet/" | prepend: site.baseurl }}">Tritium Cheatsheet</a></li>
+          <li><a href="http://www.tritium.io/stdlib/2.0.99" target="_blank">Standard Library</a></li>
+        </ul>
+      </li>
+      <li class="menu_interaction m-col-6">
+        <a href="javascript:void(0)" {% if page.training_selected %}class="selected"{% endif %}>Training</a>
+        <ul>
+          <li><a href="{{ "/training/indexing/" | prepend: site.baseurl }}">Indexing</a></li>
+          <li><a href="{{ "/training/fetch/"  | prepend: site.baseurl }}">Fetch</a></li>
+          <li><a href="{{ "/training/replace/"  | prepend: site.baseurl }}">Replace</span></a></li>
+          <li><a href="{{ "/training/namespaces/" | prepend: site.baseurl }}">Namespaces</a></li>
+          <li><a href="{{ "/training/functions/" | prepend: site.baseurl }}">Functions</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</header>

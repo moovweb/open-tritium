@@ -1,0 +1,71 @@
+---
+layout: default
+title: XPath Intro | Reference
+name: reference
+reference_selected: selected
+---
+
+<div id="page" class="copy">
+<!-- <div class='copy' id='content'> -->
+
+<h1 id="xpath">XPath</h1>
+
+<p>XPath is used to select <em>nodes</em> from an XML or HTML document. It&#8217;s useful knowledge for selecting in Tritium. A <em>node</em> is tag or element within an HTML document&#8202;&#8212;&#8202;for example a <code>&lt;div&gt;</code> or an <code>&lt;a&gt;</code>.</p>
+<p>Take this bit of Tritium, which removes every image node in the document:</p>
+<pre data-lang="ts">$(".//img") {&#x000A;  remove()&#x000A;}&#x000A;</pre>
+<p>The string in quotes (within the &#8220;<code>$()</code>&#8221;) is <strong>XPath</strong>: <code>.//img</code>. We&#8217;ll break the components down: the &#8220;<code>.</code>&#8221; instructs XPath to look within the children of the currently selected node. The &#8220;<code>//</code>&#8221; means to look through <em>every</em> child node (i.e., children, grandchildren, great-grandchildren, etc.) to see if there is an image element.</p>
+
+<h2 id="common-xpath-expressions">Common XPath expressions</h2>
+<p>XPath allows for a variety of expressions to locate content within an XML or HTML document. There are several great external resources for learning XPath listed at the bottom of the page. Here are some common expressions:</p>
+<pre><code>/                   - selects from the root node&#x000A;./                  - selects the children of the current node&#x000A;../                 - selects the children of the *parent* of the current node&#x000A;.//                 - selects *all* the children, grand-children of the current node&#x000A;body/div[1]         - selects the first div child of the body&#x000A;div[@class='one']   - selects divs with the class 'one'&#x000A;./span | ./script   - selects all span and script children of the current node&#x000A;</code></pre>
+
+<h3 id="current-node">&#8220;Current Node&#8221;</h3>
+<p>The examples rely on the relationships between nodes. So, they often include a condition about the &#8220;current node&#8221;. This is the last node selected.</p>
+<pre data-lang="ts">$("./div") {&#x000A;  $("")&#x000A;}&#x000A;</pre>
+<p>In the Tritium above, we have selected a <code>&lt;div&gt;</code> and we are about to write some XPath to select another node. The &#8220;current node&#8221; in this case is the <code>&lt;div&gt;</code>. Any XPath will need to be relative to this node.</p>
+
+<h3 id="examples">Examples</h3>
+<p>Take a look at the following HTML. Using XPath, the relationship between the nodes will be explained.</p>
+<pre>&#x000A;<span id="brown">&lt;body&gt;</span>&#x000A;<span id="purple">  &lt;div&gt;</span>&#x000A;<span id="orange">    &lt;span&gt;</span>&#x000A;<span id="green">       &lt;div&gt;&lt;/div&gt;</span>&#x000A;<span id="orange">    &lt;/span&gt;</span>&#x000A;<span id="purple">  &lt;/div&gt;</span>&#x000A;<span id="blue">  &lt;span&gt;</span>&#x000A;<span id="blue">  &lt;/span&gt;</span>&#x000A;<span id="brown">&lt;/body&gt;</span></pre>
+<p>Start with some simple Tritium:</p>
+<pre data-lang="ts">$("/body") {&#x000A;  &#x000A;}&#x000A;</pre>
+<p>The single forward slash &#8220;<code>/</code>&#8221; selects the root node&#8202;&#8212;&#8202;in this case, the <code id="brown">&lt;body&gt;</code>. Anything written inside the curly braces is <em>inside</em> the <code id="brown">&lt;body&gt;</code>: that is to say the <code id="brown">&lt;body&gt;</code> is the <em>current node</em>.</p>
+
+<h4 id="comparing--and-">Comparing &#8220;<code>./</code>&#8221; and &#8220;<code>.//</code>&#8221;</h4>
+
+<p>Firstly, look at &#8220;<code>./</code>&#8221; :</p>
+<pre data-lang="ts">$("./body") {&#x000A;  $("./div")&#x000A;}&#x000A;</pre>
+<p>The &#8220;<code>./</code>&#8221; means &#8220;search through the children of the current node.&#8221; The current node is the <code id="brown">&lt;body&gt;</code>, and there is only one child <code id="purple">&lt;div&gt;</code>: so this is the element that will be selected. The <code id="green">&lt;div&gt;</code> within the <code id="orange">&lt;span&gt;</code> <em>will not</em> be selected.</p>
+<pre data-lang="ts">$("/body") {&#x000A;  $(".//div")&#x000A;}&#x000A;</pre>
+
+<p>The &#8220;<code>.//</code>&#8221; means &#8220;search through the children, grandchildren, great-grandchildren of the current node&#8221;. The current node is the <code id="brown">&lt;body&gt;</code>, and all the <code>&lt;div&gt;</code>s within the <code>&lt;body&gt;</code> will be selected: this means both the direct <code id="purple">&lt;div&gt;</code> child <strong>and</strong> the <code id="green">&lt;div&gt;</code> within the <code id="orange">&lt;span&gt;</code> will be selected.</p>
+
+<h4 id="comparing--and--1">Comparing &#8220;<code>./</code>&#8221; and &#8220;<code>../</code>&#8221;</h4>
+<p>Starting out from a different &#8220;current node&#8221;, the following Tritium selects the <code id="purple">&lt;div&gt;</code> child of the <code id="brown">&lt;body&gt;</code>:</p>
+<pre data-lang="ts">$("/body/div") {&#x000A;&#x000A;}&#x000A;</pre>
+<p>Using &#8220;<code>./</code>&#8221;:</p>
+<pre data-lang="ts">$("/body/div") {&#x000A;  $("./span")&#x000A;}&#x000A;</pre>
+<p>As we have seen, the &#8220;<code>./</code>&#8221; selects the direct children of the current node: in this case, the <code id="orange">&lt;span&gt;</code> that also contains the <code id="green">&lt;div&gt;</code>.</p>
+<pre data-lang="ts">$("/body/div") {&#x000A;  $("../span")&#x000A;}&#x000A;</pre>
+<p>The &#8220;<code>../</code>&#8221; searches the <em>parent</em> of the current node. The current node is the <code id="purple">&lt;div&gt;</code>, and its parent is the <code id="brown">&lt;body&gt;</code>. Therefore, the XPath will search the <code id="brown">&lt;body&gt;</code> for children (<code>/</code>) that are <code>&lt;span&gt;</code>s. This will return the <code id="blue">&lt;span&gt;</code> sibling of the <code id="purple">&lt;div&gt;</code>.</p>
+
+<h2 id="xpath-and-css">XPath and CSS</h2>
+<p>XPath is similar in concept to CSS; however its syntax is quite different.</p>
+<p>Below is a brief side-by-side comparison of the different syntaxes, adapted from <a href="http://ejohn.org/blog/xpath-css-selectors/" target="_blank">this article</a>.</p>
+<pre><code>Goal                      CSS3                XPath&#x000A;----                      ----                -----&#x000A;All Elements              *                   //*&#x000A;All P Elements            p                   //p&#x000A;All Child Elements        p &gt; *               //p/*&#x000A;Element By ID             #foo                //*[@id='foo']&#x000A;Element By Class          .foo                //*[contains(@class,'foo')]&#x000A;Element With Attribute    *[title]            //*[@title]&#x000A;First Child of All P      p &gt; *:first-child   //p/*[0]&#x000A;All P with an A child     Not possible        //p[a]&#x000A;Next Element              p + *               //p/following-sibling::*[1]&#x000A;</code></pre>
+
+<h2 id="resources">Resources</h2>
+<ul>
+  <li><a href="http://www.w3schools.com/xpath/xpath_syntax.asp" target="_blank">Introduction to Syntax</a></li>
+  <li><a href="http://zvon.org/xxl/XPathTutorial/Output/example1.html" target="_blank">Another Tutorial</a></li>
+  <li><a href="https://www.simple-talk.com/dotnet/.net-framework/xpath,-css,-dom-and-selenium-the-rosetta-stone/" target="_blank">Complete Cheat-sheet to XPath and CSS</a></li>
+  <li><a href="http://www.a-basketful-of-papayas.net/2010/04/css-selectors-and-xpath-expressions.html" target="_blank">Learn XPath from CSS</a></li>
+</ul>
+
+<h2 id="online-testers">Online Testers</h2>
+<ul>
+  <li><a href="http://www.bit-101.com/xpath/" target="_blank">Bit 101</a></li>
+  <li><a href="https://addons.mozilla.org/en-us/firefox/addon/xpath-checker/" target="_blank">XPath Checker</a> (Firefox add-on to check XPath)</li>
+</ul>
+
+</div>

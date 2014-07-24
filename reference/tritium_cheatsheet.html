@@ -1,0 +1,82 @@
+---
+layout: default
+title: Tritium Cheatsheet | Reference
+name: reference
+reference_selected: selected
+---
+
+<div id="page" class="copy">
+
+<h1>Tritium Cheatsheet</h1>
+
+<div class="d-row d-gutters">
+	
+<div class="d-col-6">
+
+	<h2>Selectors</h2>
+	<div class="doc-section copy">
+	<p><code>$$(”#id, .class, [attr]”)</code></p>
+	<p><code>$$(”[href*=’example.com’]”)</code></p>
+	<p><code>$(”./div”)</code></p>
+	<p><code>$(”.//div”)</code></p>
+	<p><code>$(”/html/body/div”)</code></p>
+	<p><code>$(”.//div[contains(@class, ‘example’)]”)</code></p>
+	<p><code>$(”.//div[contains(text(), ‘example’)]”)</code></p>
+	</div>
+
+</div>
+
+<div class="d-col-6">
+
+	<h2>Functions</h2>
+	<div class="doc-section copy">
+	<p><code>remove()</code></p>
+	<p><code>add_class(”example”)</code></p>
+	<p><code>attribute(”href”, “example.com”)</code></p>
+	<p><code>move_here(”/html/body/div”)</code></p>
+	<p><code>move_to(”../../div”)</code></p>
+	<p><code>text(”example”)</code></p>
+	<p><code>inner() { }</code></p>
+	<p><code>fetch(”@href”)</code></p>
+	<p><code>insert(”div”, “text”, class:”example”) {}</code></p>
+	<p><code>name(”div”)</code></p>
+	</div>
+
+</div>
+
+<h2>Snippets</h2>
+
+<pre data-lang="ts">$(”/html/body”) {
+	insert(”div”, id:”header”) {
+		# Move the menu into my header
+		move_here(”..//div[@id=’menu’]”) {
+			remove(”./a[@class=’faqs’]”)
+			$$(”li”) {
+				log(index())
+			}
+		}
+	}
+}
+</pre>
+
+<pre data-lang="ts"># Replacing Text
+$variable = “Example”
+$variable { replace(/Ex/, “S” ) }
+</pre>
+
+<pre data-lang="ts"># Match/with are essentially if/then statements
+match($variable) {
+	with(/Sample/) {
+		# Check the terminal to see your logs
+		log(”Matched!”)
+	}
+	else() { log(”Failed.”) }
+}</pre>
+
+<pre data-lang="ts">$$("a") {
+	$old_url = fetch(”@href”)
+	attribute("href", "javascript:myfunc();")
+	$$(”span”) { remove() }
+}</pre>
+
+</div>

@@ -1,0 +1,32 @@
+---
+layout: default
+title: Fetch | Training
+name: training
+training_selected: selected
+---
+
+<div id="page" class="copy">
+
+<h1 id="fetch">Fetch</h1>
+<p><code>fetch()</code> is a function that allows you to grab something (for example a node or some text), and pass it into a variable.</p>
+
+<h2 id="fetching">Fetching</h2>
+<p>To fetch some data, just scope into the parent node:</p>
+<pre data-lang="ts">$("./div") {&#x000A;&#x000A;}&#x000A;</pre>
+<p>Then set a variable using the dollar sign syntax:</p>
+<pre data-lang="ts">$("./div") {&#x000A;  $var = &#x000A;}&#x000A;</pre>
+<p>Finally, use the <code>fetch()</code> function to grab whichever item you require within the <code>&lt;div&gt;</code>:</p>
+<pre data-lang="ts">$("./div") {&#x000A;  $var = fetch("./a")&#x000A;}&#x000A;</pre>
+<p>To grab some text from a node, just use <code>text()</code> instead of the path to the node.</p>
+
+<h2 id="example">Example</h2>
+<pre data-lang="html">&lt;div&gt;&#x000A;  &lt;a href="http://google.com"&gt;Google&lt;/a&gt;&#x000A;&lt;/div&gt;&#x000A;</pre>
+<p>Take the above HTML as our example.</p>
+<p>The following Tritium:</p>
+<pre data-lang="ts">$("div") {&#x000A;  $var1 = fetch("./a")&#x000A;}&#x000A;</pre>
+<p>will set the variable <code>$var1</code> to <code>"&lt;a href="http://google.com"&gt;Google&lt;/a&gt;"</code>.</p>
+<p>Whereas the following Tritium:</p>
+<pre data-lang="ts">$("div") {&#x000A;  $var1 = fetch("./a/text()")&#x000A;}&#x000A;</pre>
+<p>will set the variable <code>$var1</code> to just <code>"Google"</code>.</p>
+
+</div>

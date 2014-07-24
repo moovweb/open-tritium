@@ -1,0 +1,8 @@
+
+/*body { -webkit-text-size-adjust: 100%; background: #f5f7f8; color: #444444; font: 14px/24px Lato, Helvetica, Arial, sans-serif; margin: 0; padding: 68px 0 228px; position: relative; min-width: 768px; min-height: 100%; !important;}*/
+
+/*.syntaxhighlighter .gutter { -webkit-border-radius: 4px 0 0 4px; border-radius: 4px 0 0 4px; background: #777; color: #ccc; padding: 10px 6px; position: absolute; text-align: right; width: 35px; !important;}*/
+
+#opentritiumlogo { background: url('/images/opentritiumlogo.png') no-repeat -5px 50%; background-size: 100%; display: inline-block; vertical-align: middle; width: 133.33333px; height: 48px; }
+@media (max-width: 480px), (max-height: 480px) { #opentritiumlogo { background: url('/images/opentritiumlogo.png') no-repeat 50%; background-size: auto 30px; display: block; width: auto; height: 36px; } }
+

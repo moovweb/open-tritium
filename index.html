@@ -1,1 +1,124 @@
-Nothing to see here yet
+---
+layout: default
+title: Home
+---
+
+<div id="intro-header" class="copy row">
+  <div class="col-12">
+  <h1>Tritium is a simple scripting language for efficiently transforming structured data.</h1>
+  <p class="text-center"><img src="/images/code-snippet-window.png" alt=""></p>
+  <p>Tritium takes as input HTML, XML, or JSON documents and outputs HTML, XML, or JSON data that has been transformed according the rules defined in the Tritium script.</p>
+  <p>Like jQuery, idiomatic Tritium code is structured around selecting a collection of elements via a CSS or XPath selector and then chaining a series of operations on them.</p>
+  </div>
+</div>
+
+<div id="page" class="copy">
+
+<h2>Getting Started</h2>
+<p>We’ll take you through how to write Tritium by doing a pretty simple task: removing something from the page. When writing Tritium, two steps are necessary. First, you select an element on the page and then you perform a function on that page.</p>
+
+<h3>Selecting</h3>
+<p>To select an element, Tritium uses either CSS-style selectors or XPath-style selectors. XPath is simply a tool for controlling which changes are performed on which nodes.</p>
+<p>CSS is probably more familiar, so we will start by using this syntax to select.</p>
+<p>Start selecting by using two dollar signs and opening parantheses:</p>
+<pre data-lang="ts">$$()</pre>
+<p>Then select the body of the document:</p>
+<pre data-lang="ts">$$("body")</pre>
+<p>Then open its scope:</p>
+<pre data-lang="ts">$$("body") { &#x000A;
+}</pre>
+<p>Now any changes made in this scope will be performed on the body node. We can also nest selectors inside each other:</p>
+<pre data-lang="ts">$$("body") {
+  $$()
+}</pre>
+<p>We can use nested selectors to say &#8220;only select items within the preceding category also.&#8221;</p>
+<p>Our goal is to remove the banner at the top of the page that says &#8220;Welcome to Wikipedia&#8221;. Right-click on the banner, and see if it has an id we can use to select
+it:</p>
+<p><img src="/images/topbanner.png" alt=""></p>
+<p>We can use the id mp-topbanner to select this element. To select an id with CSS, all you need to use is the pound sign/hash:</p>
+<pre data-lang="ts">#</pre>
+<p>Then we add the id of mp-topbanner:</p>
+<pre data-lang="ts">#mp-topbanner</pre>
+<p>That’s perfect! We can put it in our selector from before:</p>
+<pre data-lang="ts">$$("body") {
+  $$("#mp-topbanner")
+}</pre>
+
+<h3>Performing the Function</h3>
+<p>Now we’ve selected the element, we can perform a function on it. We want to remove the banner, and so the <code>remove()</code> function is most appropriate (<a href="http://tritium.io" target="_blank">See more on the spec.</a>). We open curly braces and place the function inside the scope of the selector:</p>
+<pre data-lang="ts">$$("body") {
+  $$("#mp-topbanner") {
+    remove()
+  }
+}</pre>
+<p>Refresh the page. The banner at the top will have been removed. (NB: Sometimes you have to clear the browser cache before you see your changes take effect.)</p>
+<p>That is the basic syntax of Tritium - pretty simple, hey? The other examples we will consider follow the same basic rules:</p>
+<ol>
+  <li>Select an element.</li>
+  <li>Use one of Tritium’s functions to modify it.</li>
+</ol>
+<p>We’re going to cover two more of the most commonly-used Tritium functions:
+<code>move_to()</code> and <code>attribute.</code></p>
+
+<h2>Move To</h2>
+<p>The next thing we will do is move an element on the page. We want to move the
+&#8220;Featured Picture&#8221; to the top of the page.</p>
+<p>Right-click on the featured picture box and select &#8220;Inspect Element&#8221;. The table with the id <code>mp-lower</code> encompasses the entire of this box. We want to move the whole of this table to the top of its parent div&#8212;which would move it above the <code>mp-upper</code> table.</p>
+<p>Let’s start by selecting the mp-lower table. Our Tritium from the previous example already opened the body scope for us, so we can work within that:</p>
+<pre data-lang="ts">$$("body") {
+  $$("#mp-topbanner") {
+    remove()
+  } &#x000A;
+  $$("") &#x000A;
+}</pre>
+<p>This starts a new scope within the body. We want to do a similar search as for the previous example, but this time selecting a table with the id <code>mp-lower</code>:</p>
+<pre data-lang="ts">$$("#mp-lower")</pre>
+<p>To move the item we have currently selected, we use the function <code>move_to()</code> (<a href="http://tritium.io" target="_blank">see more on the spec.</a>).</p>
+<pre data-lang="ts">$$("#mp-lower") {
+  move_to()
+}</pre>
+<p>Obviously, this isn’t quite enough. We need to tell the Tritium where to move the table to. We want to move it to the parent. To do this, we have to use XPath. To move to a parent, we use the double-period: <code>..</code></p>
+<pre data-lang="ts">$$("#mp-lower") {
+  move_to("..")
+}</pre>
+<p>The default for <code>move_to()</code> is to move the item to the bottom. We add a qualifier in this case to move it to the top of its parent.</p>
+<pre data-lang="ts">$$("#mp-lower") {
+  move_to("..", "top")
+}</pre>
+<p>The &#8220;Featured picture&#8221; box has moved to the top of the page.</p>
+
+<h2>Attributes</h2>
+<p>Tritium doesn’t just let you move things around&#8212;we can also change attributes on the items.</p>
+<p>This gives us a good chance to refactor our rounded border code that we added to <code>main.scss</code>. Currently, with our id selector, we’re selecting one h2 in the mp-upperbox. We want to apply the style to <em>all</em> the h2s within <em>all</em> the boxes on the page. Each one has an id, but it would be nice to reuse a rounded-border style
+using class names.</p>
+<p>We can do this by selecting all the h2 tags we want, and add a class attribute of
+&#8220;pill&#8221; to them. Obviously, we could do this in CSS too. We could write the following
+CSS:</p>
+<pre data-lang="css">h2 {
+// pill style goes here
+}</pre>
+<p>This could be problematic for a couple of reasons. Firstly, these styles will apply to every h2 tag - which may be messy if there are other h2s ont he page. Secondly, we want to facilitate clean CSS&#8212;and to do this, we modify the HTML. This is especially useful if the source site does not have semantic HTML.</p>
+<p>Let’s start by using XPath to select the h2 elements we want to change. You can write this code just underneath the closing curly brace for our <code>move_to</code> function. All the h2 title elements are contained within the <code>mw-body</code> div. They are easy to select using CSS-style selectors.</p>
+<pre data-lang="ts">$$(".mw-body h2")</pre>
+<p>That XPath will search for the mw-body div. Within this, it will search for all h2
+tags.</p>
+<p>To add an attribute, we use the <code>attribute()</code> function. It’s pretty simple:</p>
+<pre data-lang="ts">$$(".mw-body h2") {
+  attribute("class", "pill")
+}</pre>
+<p>Keep in mind that this overwrites all the previous classes of the element. If you’d like to keep the previous classes, use <code>add_class("pill")</code> instead. Once the attribute function is applied, refresh the page, rightclick and &#8220;Inspect Element&#8221; on the h2 tags&#8212;they will have a new class! We will need to make sure our styles apply to the new <code>.pill</code>, rather than the individual id <code>(#mp-tfa-h2)</code> as before.</p>
+<p>We can go a bit further with the h2 styles. You may have noticed they are mostly styled with inline styles. We can get rid of them using Tritium. As we have already selected the h2, we can place our next function right below the attribute line.</p>
+<p>We previously used the <code>remove()</code> function to remove a tag. However, we can also use it to remove attributes&#8212;using XPath. The <code>@</code> symbol is used to denote an attribute in XPath. In this case, we want to remove the style attributes of the h2, so add the following:</p>
+<pre data-lang="ts">$$(".mw-body h2") {
+  attribute("class", "pill")
+  remove("@style")
+}</pre>
+<p>When we refresh, the styles for the title bars have been removed. We can add some of our own to the pill class in our stylesheet:</p>
+<pre data-lang="css">.pill {
+  border-radius: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  padding: 5px;
+}</pre>
+<p>Refresh, and the headers look a lot nicer. Go ahead and add some more styles if you want!</p>
+</div>

@@ -1,0 +1,100 @@
+---
+layout: default
+title: Functions | Training
+name: training
+training_selected: selected
+---
+
+<div id="page" class="copy">
+	
+<h1 id="tritium-libraries-mixers-writing-your-own-functions">Tritium Libraries (Mixers): Writing Your Own Functions</h1>
+
+<h2 id="basics">Basics</h2>
+
+<p>Before starting to write functions, a couple of concepts must be introduced&#8202;&#8212;&#8202;chiefly <strong>types</strong>. <em>Types</em> are used to define what input is being received in the function and also what the function will act upon. Tritium has several built-in types:</p>
+<dl>
+  <dt><code>Base</code></dt>
+  <dd>the base set of functions&#8202;&#8212;&#8202;check out the <a href="http://tritium.io" target="_blank">Tritium reference</a> for a list of these</dd>
+  <dt><code>Text</code></dt>
+  <dd>a string of text</dd>
+  <dt><code>Regexp</code></dt>
+  <dd>a regular expression</dd>
+  <dt><code>XMLNode</code></dt>
+  <dd>an XML node, specified using XPath</dd>
+  <dt><code>Attribute</code></dt>
+  <dd>an attribute of a tag</dd>
+  <dt><code>Position</code></dt>
+  <dd>a relative position, such as &#8220;top&#8221;, &#8220;bottom&#8221;, &#8220;before&#8221;, etc.</dd>
+</dl>
+<p>Types can inherit and all types inherit from <code>Base</code>.</p>
+<p>You must specify a <em>scope type</em> and <em>argument type(s)</em> when defining a function.</p>
+<div class="callout warning">  <p>You must define your functions in order (if you use your own function in another function). You must be explicit with return types.</p>
+</div>
+
+<h2 id="defining-a-function">Defining a Function</h2>
+<p>This is the basic definition syntax:</p>
+<pre data-lang="ts">@func ScopeType.funcName(ArgType %argName) {&#x000A;  log(%argName) # Comments are just fine&#x000A;}&#x000A;</pre>
+<p>There are a number of variables within this:</p>
+<dl>
+  <dt><code>ScopeType</code></dt>
+  <dd>scope that your new function is defined within. It affects what data your function can operate on. For example, if you want the function to be performed on XML nodes only, set the scope type to &#8220;<code>XMLNode</code>&#8221;. The <code>ScopeType</code> also determines which functions you can call within your definition.</dd>
+  <dt><code>funcName</code></dt>
+  <dd>name of your function</dd>
+  <dt><code>ArgType</code></dt>
+  <dd>scope in which the <code>%argName</code> will be entered. For example, if you want to enter an argument that is pointing to a particular node with XPath, &#8220;<code>XMLNode</code>&#8221; is an appropriate <code>ArgType</code>.</dd>
+  <dt><code>%argName</code></dt>
+  <dd>property which will be entered in the function</dd>
+</dl>
+
+<h2 id="example-function">Example Function</h2>
+<pre data-lang="ts">@func XMLNode.doit(Text %message) {&#x000A;  log("DO IT: " + %message)&#x000A;}&#x000A;</pre>
+<p>The function is performed on an XMLNode. The function name is &#8220;<code>doit</code>&#8221;. Into the function you put text, and this text is then used in a base function.</p>
+<p>In this case the <code>log()</code> function is called within the function&#8202;&#8212;&#8202;it&#8217;s defined on the <code>Base</code> scope. How does this reconcile with the fact that the function is defined in the XMLNode scope? Well, <code>XMLNode</code> inherits from <code>Base</code> and therefore inherits all of its functions.</p>
+<p>The function is used as so:</p>
+<pre data-lang="ts">$("//div") {&#x000A;  doit("yeah")&#x000A;}&#x000A;</pre>
+<p>Notice how the function is called within an <code>XMLNode</code> scope (as we declared earlier). An text-based argument is added (the message).</p>
+<p>The function as used here will log &#8220;<code>DO IT: yeah</code>&#8221; when inside any <code>&lt;div&gt;</code>.</p>
+
+<h2 id="notes-on-writing-functions">Notes On Writing Functions</h2>
+
+<h3 id="type-inheritance">Type Inheritance</h3>
+<p>In Tritium, types inherit. Since all types inherit from <code>Base</code>, any functions defined on the <code>Base</code> scope are available inside any other scope. To define a function within the <code>Base</code> scope, just omit the &#8220;<code>ScopeType.</code>&#8221; from the definition.</p>
+<p>For example: <code>@func funcName(Text %attribute)</code> will be defined in the <code>Base</code> scope.</p>
+
+<h3 id="this">this()</h3>
+<p><code>this()</code> will return whatever the parent scope&#8217;s value is. Within a <code>Text</code> scope it returns the current text. Within an <code>XMLNode</code> scope it returns the current node.</p>
+
+<h3 id="yield">yield()</h3>
+<p><code>yield()</code> gives the current scope back to the function caller.</p>
+<p>Whenever you call Tritium with curly braces, like:</p>
+<pre data-lang="ts">attribute("thing") {&#x000A;  ...&#x000A;}&#x000A;</pre>
+<p>You are opening the <code>yield()</code> from that function. The <code>yield()</code> type is determined by its placement in your definition. Observe the difference:</p>
+<pre data-lang="ts">@func XMLNode.thing1(Text %attr) {&#x000A;  attribute(%attr, "whatcha?")&#x000A;  yield() # XMLNode scope&#x000A;}&#x000A;&#x000A;@func XMLNode.thing2(Text %attr) {&#x000A;  attribute(%attr) {&#x000A;    yield() # Attribute scope&#x000A;  }&#x000A;}&#x000A;</pre>
+
+<h3 id="return-types">Return Types</h3>
+<p>The last statement within a function dictates the return type and value:</p>
+<pre data-lang="ts">@func doit(Text %message) {&#x000A;  $fullMessage = "hey " + %message&#x000A;  log($fullMessage)&#x000A;  $fullMessage&#x000A;}&#x000A;</pre>
+<p>So using the following Tritium:</p>
+<pre data-lang="ts">doit(doit("babycakes"))&#x000A;</pre>
+<p>Will output:</p>
+<pre><code>hey babycakes&#x000A;hey hey babycakes&#x000A;</pre>
+
+<h3 id="overloading">Overloading</h3>
+<p>Like other various programming languages, Tritium has support for a feature called function overloading. This is the ability for functions that have the same name to perform differently depending on either the number of arguments or the type of its argument(s). You can also define different scopes for the function to execute in.</p>
+<p>A function is resolved according to its signature. A function signature looks like this:</p>
+<pre data-lang="ts">ScopeType.Name(Arg1Type, Arg2Type)&#x000A;</pre>
+<p>So the previous example&#8217;s signature is:</p>
+<pre data-lang="ts">Base.doit(Text)&#x000A;</pre>
+<p>Therefore, all of the following are different functions, but look like overloaded functions to the user:</p>
+<pre data-lang="ts">@func doit(Text %message)&#x000A;@func XMLNode.doit(Text %message)&#x000A;@func XMLNode.doit(Node %message_node)&#x000A;@func XMLNode.doit(Text %message, Text %suffix)&#x000A;</pre>
+<p>You can define the function <code>doit()</code> to execute different behavior based on what scope you&#8217;re executing the function in and the different type of argument(s) you pass in.</p>
+
+<h3 id="overriding">Overriding</h3>
+<p>Function overriding is simple: if you define a function with the same name as an existing function, and you keep the original function&#8217;s arguments and types, you will override that existing function. You can then define this new function to perform different instructions.</p>
+<p>For example, you may want to override the native <code>log()</code> function to always append or prepend some text before it outputs your message.</p>
+<pre data-lang="ts">@func log(Text %message) {&#x000A;  log("= = = = = = = " + %message + " = = = = = = =")&#x000A;}&#x000A;</pre>
+
+<h3 id="variables">Variables</h3>
+<p>The arguments specified in the function stub (e.g., <code>%message</code>) are local variables. These local variables cannot be redefined. However, you can use/set global variables like normal within functions.</p>
+
+</div>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include head.html %}
+  </head>
+  
+  <body id="{{page.name}}-page">
+    {% include header.html %}
+    <div id="page" class="copy">
+    	{{content}}
+    </div>
+    {% include footer.html %}
+  </body>
+</html>

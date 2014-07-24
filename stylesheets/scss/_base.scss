@@ -1,0 +1,46 @@
+﻿body {
+  text-rendering: optimizeLegibility;
+  background: #f5f7f8;
+  @include mobile {
+    min-width: 0;
+    padding: 72px 0 0;
+  }
+}
+
+@include mobile {
+  .copy h3 {
+    margin-bottom: $sp;
+  }
+  .copy ul, .copy ol, dl {
+    margin-left: 2em;
+  }
+}
+
+.see-more-link {
+  &:after {
+    @include icon-chevron-right;
+    display: inline;
+    margin-left: 4px;
+  }
+}
+
+.widget {
+  margin: auto;
+}
+
+#page {
+  padding: 30px 10px;
+}
+
+dt {
+  margin: 0 0 -2px;
+}
+
+#header a[target="_blank"]:after, 
+#page a[target="_blank"]:after {
+    @include icon-popup;
+    color: #d1d1d1;
+    margin-left: 5px;
+}
+
+
